@@ -1,0 +1,17 @@
+@startuml
+|Client|
+start
+:Người dùng chọn người dùng khác để nhắn tin;
+:Hiển thị giao diện nhắn tin;
+:Người dùng nhập nội dung tin nhắn và gửi cho người dùng khác;
+|Server|
+:Gửi yêu cầu gửi tin nhắn đến máy chủ;
+if (Mã JWT hợp lệ) then (yes)
+    :Lưu tin nhắn vào CSDL;
+    :Gửi thông báo tin nhắn cho người dùng khác;
+    :Trả về kết quả thành công cho máy khách;
+else (no)
+    :Trả về thông báo lỗi cho máy khách;
+endif
+stop
+@enduml

@@ -1,0 +1,19 @@
+
+@startuml
+left to right direction
+
+actor User
+' User -> Ms: initiate
+rectangle Chat {
+    usecase "Hiển thị danh sách chat" as show_list
+    usecase "Xem tin nhắn" as View
+    usecase "Gửi tin nhắn" as Send
+    usecase "Đăng nhập" as Login
+    User --> Send: initiate
+    User --> show_list
+    User --> View
+    show_list ..> Login: <<include>>
+    View ..> Login: <<include>>
+    Send ..> Login: <<include>>
+}
+@enduml

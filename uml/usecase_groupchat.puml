@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+skinparam packageStyle rect
+actor User
+rectangle "Nhóm chat" {
+  usecase "Tạo nhóm chat" as U1
+  usecase "Thêm thành viên" as U2
+  usecase "Xóa thành viên" as U3
+  usecase "Đổi tên nhóm" as U4
+  usecase "admin" as admin
+  usecase "Gủi tin nhắn nhóm" as Send
+  User --> Send
+  User --> U1 
+  User --> U2 
+  User --> U3 
+  User --> U4 
+  U1 ..> admin : <<include>>
+  U2 ..> admin : <<include>>
+  U3 ..> admin : <<include>>
+  U4 ..> admin : <<include>>
+}
+@enduml
+

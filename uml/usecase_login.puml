@@ -1,0 +1,10 @@
+@startuml
+actor User
+rectangle "Đăng nhập" {
+  usecase "Nhập thông tin đăng nhập" as U1
+  usecase "Xác thực thông tin" as U2
+  User --> U1 : Nhập thông tin
+  U1 --> U2 : Gửi thông tin
+  U2 --> User : Trả về kết quả
+}
+@enduml

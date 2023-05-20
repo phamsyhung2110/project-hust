@@ -1,0 +1,21 @@
+@startuml
+|Client|
+start
+:Người dùng chọn tạo nhóm chat;
+if (Người dùng đăng nhập) then (yes)
+    :Hiển thị giao diện tạo nhóm chat;
+    :Nhập thông tin nhóm chat;
+    :Gửi yêu cầu tạo nhóm chat cho máy chủ;
+    |Server|
+    if (Thông tin hợp lệ) then (yes)
+        :Tạo nhóm chat mới trong CSDL;
+        :Thêm người dùng tạo nhóm chat vào danh sách thành viên nhóm chat;
+        :Trả về kết quả thành công cho máy khách;
+    else (no)
+        :Trả về thông báo lỗi cho máy khách;
+    endif
+else (no)
+    :Hiển thị thông báo yêu cầu đăng nhập;
+endif
+stop
+@enduml
