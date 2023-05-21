@@ -1,0 +1,82 @@
+@startuml
+
+actor User
+participant System
+participant SocketIO
+participant Database
+actor Reciever
+
+activate User
+activate System
+activate SocketIO
+activate Database
+activate Reciever
+User -> System: Tạo nhóm chat (ít nhất 3 thành viên)
+System -> Database: Lưu thông tin nhóm vào cơ sở dữ liệu
+Database --> System: Xác nhận lưu thông tin nhóm thành công
+System --> User: Thông báo tạo nhóm thành công
+
+User -> System: Gửi tin nhắn trong nhóm
+activate User
+activate System
+System -> SocketIO: Gửi tin nhắn đến SocketIO
+activate SocketIO
+SocketIO -> Database: Lưu tin nhắn vào cơ sở dữ liệu
+SocketIO --> Reciever: Gửi tin nhắn tới người nhận
+activate Database
+Database --> SocketIO: Xác nhận lưu tin nhắn thành công
+deactivate Database
+SocketIO --> System: Xác nhận gửi tin nhắn thành công
+deactivate SocketIO
+System --> User: Hiển thị tin nhắn đã gửi
+deactivate User
+deactivate System
+
+User -> System: Thêm thành viên vào nhóm
+activate User
+System -> Database: Lưu thông tin thêm thành viên vào cơ sở dữ liệu
+activate System
+activate Database
+Database --> System: Xác nhận lưu thông tin thành viên thành công
+deactivate Database
+System --> User: Thông báo thêm thành viên thành công
+deactivate User
+deactivate System
+
+
+User -> System: Xóa thành viên khỏi nhóm
+activate User
+System -> Database: Xóa thông tin thành viên khỏi cơ sở dữ liệu
+activate System
+activate Database
+Database --> System: Xác nhận xóa thông tin thành viên thành công
+deactivate Database
+System --> User: Thông báo xóa thành viên thành công
+deactivate User
+deactivate System
+
+User -> System: Đổi tên nhóm
+activate User
+activate System
+System -> Database: Cập nhật thông tin tên nhóm vào cơ sở dữ liệu
+activate Database
+Database --> System: Xác nhận cập nhật thông tin tên nhóm thành công
+deactivate Database
+System --> User: Thông báo đổi tên nhóm thành công
+deactivate System
+deactivate User
+
+User -> System: Gửi tin nhắn trong nhóm
+activate User
+activate System
+System -> SocketIO: Gửi tin nhắn đến SocketIO
+activate SocketIO
+SocketIO -> Database: Lưu tin nhắn vào cơ sở dữ liệu
+SocketIO --> Reciever: Gửi tin nhắn tới người nhận
+deactivate SocketIO
+Database --> SocketIO: Xác nhận lưu tin nhắn thành công
+SocketIO --> System: Xác nhận gửi tin nhắn thành công
+System --> User: Thông báo gửi tin nhắn thành công cho nhóm
+
+deactivate Reciever
+@enduml

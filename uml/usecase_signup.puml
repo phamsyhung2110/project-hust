@@ -1,0 +1,10 @@
+@startuml
+left to right direction
+
+actor User
+rectangle Chat {
+    usecase "Đăng ký tài khoản" as Register
+    User --> Register: initiate
+    Register --> User: Mở giao diện đăng ký
+}
+@enduml

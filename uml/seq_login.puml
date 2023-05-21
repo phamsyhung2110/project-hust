@@ -1,0 +1,28 @@
+@startuml
+
+actor User
+participant "Hệ thống" as System
+database "Cơ sở dữ liệu" as Database
+
+activate User
+User -> System: Nhập thông tin đăng nhập
+System -> Database: Truy vấn thông tin user
+activate Database
+activate System
+Database --> System: Trả về thông tin user
+deactivate Database
+
+alt User tồn tại trong cơ sở dữ liệu
+    activate User
+    alt Thông tin đăng nhập chính xác
+    activate System
+        System -> User: Đăng nhập thành công
+    else Thông tin đăng nhập không chính xác
+        System -> User: Thông báo lỗi và yêu cầu nhập lại
+    end
+else User không tồn tại trong cơ sở dữ liệu
+    System -> User: Thông báo user chưa tồn tại
+end
+deactivate User
+
+@enduml

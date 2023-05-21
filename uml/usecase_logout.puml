@@ -1,0 +1,10 @@
+@startuml
+left to right direction
+
+actor User
+rectangle Chat {
+    usecase "Đăng xuất" as Logout
+    User --> Logout: initiate
+    Logout --> User: Đăng xuất thành công
+}
+@enduml
