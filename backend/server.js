@@ -50,13 +50,15 @@ const server = app.listen(
   PORT,
   console.log(`Server running on PORT ${PORT}...`.yellow.bold)
 );
-
+console.log(process.env.FE_URL)
 const io = require("socket.io")(server, {
-  pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000",
-    // credentials: true,
+    origin: '*',
+    methods: ["GET", "POST"],
+    credentials: true
   },
+  transports: ['websocket', 'polling'],
+  allowEIO3: true
 });
 
 io.on("connection", (socket) => {
