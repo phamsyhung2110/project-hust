@@ -16,7 +16,7 @@ import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
 // const ENDPOINT = process.env.REACT_APP_API_URL; 
-const ENDPOINT = "http://localhost:5000"
+const ENDPOINT = "http://3.229.10.249/be/"
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -107,9 +107,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     socket = io(ENDPOINT, {
-      autoConnect: false,
-      transports: ['polling','websocket'],
-    });
+      path: "/be",
+      transports: ['polling','websocket' ]});
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
