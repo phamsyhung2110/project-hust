@@ -56,12 +56,10 @@ console.log(process.env.FE_URL)
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: '*',
+    origin: 'http://3.229.10.249:3000',
     methods: ["GET", "POST"],
-    credentials: true
   },
   transports: ['polling', 'websocket'],
-  allowEIO3: true
 });
 
 io.on("connection", (socket) => {
