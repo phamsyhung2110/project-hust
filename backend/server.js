@@ -51,14 +51,11 @@ const server = app.listen(
   console.log(`Server running on PORT ${PORT}...`.yellow.bold)
 );
 console.log(process.env.FE_URL)
+
 const io = require("socket.io")(server, {
   cors: {
     origin: '*',
-    methods: ["GET", "POST"],
-    credentials: true
   },
-  transports: ['websocket', 'polling'],
-  allowEIO3: true
 });
 
 io.on("connection", (socket) => {
