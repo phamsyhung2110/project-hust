@@ -107,7 +107,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     socket = io(ENDPOINT, {
-      path: '/seacher',
+      path: '/socketio',
       autoConnect: false,
       transports: ['polling','websocket'],
     });
