@@ -20,6 +20,9 @@ app.use(express.json()); // to accept json data
 //   res.send("API Running!");
 // });
 
+app.use("/test", (req, res) => {
+  res.render("./index.html")
+})
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
@@ -36,7 +39,7 @@ if (process.env.NODE_ENV === "production") {
   );
 } else {
   app.get("/", (req, res) => {
-    res.send("API is running..");
+    res.sendFile(path.join(__dirname+'/index.html'));
   });
 }
 

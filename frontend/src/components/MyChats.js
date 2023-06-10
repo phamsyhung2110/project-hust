@@ -1,6 +1,8 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
+import { IconButton, Spinner } from "@chakra-ui/react";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getSender } from "../config/ChatLogics";
@@ -8,6 +10,8 @@ import ChatLoading from "./ChatLoading";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
+import { getSenderFull } from "../config/ChatLogics";
+import ProfileModal from "./miscellaneous/ProfileModal";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -55,16 +59,23 @@ const MyChats = ({ fetchAgain }) => {
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
       borderWidth="1px"
+      marginLeft={20}
+      marginRight={1}
     >
       <Box
         pb={3}
         px={3}
+        bg="#33ACFF"
+        borderRadius="8px"
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="Work sans"
         d="flex"
         w="100%"
         justifyContent="space-between"
         alignItems="center"
+        marginLeft={1}
+        marginBottom={3}
+        paddingTop={2}
       >
         My Chats
         <GroupChatModal>
@@ -120,7 +131,70 @@ const MyChats = ({ fetchAgain }) => {
           <ChatLoading />
         )}
       </Box>
+      <Box
+        position="fixed"
+        top="0"
+        left="0"
+        width="80px"
+        height="100vh"
+        backgroundColor="#338AFF"
+        color="#fff"
+        borderRadius="lg"
+        
+      >
+      {/* Các biểu tượng tùy chọn */}
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        paddingTop="20px"
+        paddingBottom="5px"
+      >
+        <Box
+          display="flex"
+          margin={3}
+        >
+          {/* <IconButton
+              d={{ base: "flex", md: "none" }}
+              icon={<ArrowBackIcon />}
+              onClick={() => setSelectedChat("")}
+              bg="black"
+          /> */}
+          {/* <>
+            {getSender(user, selectedChat.users)}
+            <ProfileModal
+              user={getSenderFull(user, selectedChat.users)}
+            />
+          </> */}
+          <a href="#" className="active">
+            <IconButton
+                d={{ base: "flex", md: "none" }}
+                icon={<ArrowBackIcon />}
+                onClick={() => setSelectedChat("")}
+                bg="black"
+            />
+            User
+        </a>
+        </Box>
+        <Box
+          display="flex"
+          margin={3}
+          bg="black"
+          borderRadius="10px"
+          fontSize={10}
+        >
+          <a href="#">
+          <img
+            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.veryicon.com%2Ficons%2Fmiscellaneous%2Ftwo-color-icon-library%2Fuser-286.html&psig=AOvVaw3khYSaVXsAQcVwRvvq44nB&ust=1686397046846000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJDA69mMtv8CFQAAAAAdAAAAABAJ"
+            alt="Settings"
+          />
+        </a>
+        </Box>
+        
+      </Box>
     </Box>
+    </Box>
+    
   );
 };
 
