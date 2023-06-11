@@ -7,13 +7,11 @@ const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const { chat } = require("./data/data")
 const path = require("path");
-var cors = require('cors')
-
+const cors = require('cors');
 dotenv.config();
 connectDB();
 const app = express();
-
-app.use(cors())
+app.use(cors());
 app.use(express.json()); // to accept json data
 
 // app.get("/", (req, res) => {

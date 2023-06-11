@@ -16,6 +16,12 @@ Uses Socket.io for real time communication and stores user details in encrypted 
 https://talk-a-tive.herokuapp.com/
 
 ![](https://github.com/piyush-eon/mern-chat-app/blob/master/screenshots/group%20%2B%20notif.PNG)
+
+## Note
+
+**BE:** Using npm in root folder
+**FE:** Using yarn in /frontend
+
 ## Run Locally
 
 Clone the project
@@ -27,7 +33,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd mern-chat-app
+  cp .env.example .env
 ```
 
 Install dependencies
@@ -38,7 +44,7 @@ Install dependencies
 
 ```bash
   cd frontend/
-  npm install
+  yarn
 ```
 
 Start the server
@@ -54,6 +60,10 @@ Start the Client
   npm start
 ```
 
+## PORT
+
+**BE:** Open in port 8800
+**FE:** Open in port 3000
   
 # Features
 
