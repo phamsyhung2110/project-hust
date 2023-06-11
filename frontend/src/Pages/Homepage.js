@@ -33,18 +33,21 @@ function Homepage() {
         m="40px 0 15px 0"
         borderRadius="lg"
         borderWidth="1px"
-      >
+      > 
+      {/* Box Above: Render title bar in login page */}
         <Text fontSize="4xl" fontFamily="Work sans">
           Talk-A-Tive
         </Text>
       </Box>
       <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
         <Tabs isFitted variant="soft-rounded">
+        {/* Create tab for login an signup */}
           <TabList mb="1em">
             <Tab>Login</Tab>
             <Tab>Sign Up</Tab>
           </TabList>
           <TabPanels>
+            {/* Create panel for tab login and signup */}
             <TabPanel>
               <Login />
             </TabPanel>

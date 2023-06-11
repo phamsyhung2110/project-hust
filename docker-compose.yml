@@ -1,0 +1,31 @@
+version: '3.3'
+
+networks:
+  chatapp:
+    driver: bridge
+services:
+  fe:
+    container_name: fe
+    image: fe-chatapp:v2
+    ports:
+      - 3000:3000
+    networks:
+      - chatapp
+    depends_on:
+      - api
+    environment:
+      - REACT_APP_API_URL="http://api:5000"
+
+  # api:
+  #   container_name: api
+  #   image: be-chatapp:v3
+  #   ports:
+  #     - 5000:5000
+  #   networks:
+  #     - chatapp
+  #   environment:
+  #     - NODE_ENV=dev
+  #     - MONGO_URI=mongodb+srv://admin:abc.123@cluster0.5e0sdal.mongodb.net/?retryWrites=true&w=majority
+  #     - PORT=5000
+  #     - JWT_SECRET=abc
+  #     - FE_URL=fe:3000

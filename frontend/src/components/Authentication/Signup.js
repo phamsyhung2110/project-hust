@@ -68,6 +68,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+      // Save data at browser by localStorage
       localStorage.setItem("userInfo", JSON.stringify(data));
       setPicLoading(false);
       history.push("/chats");
@@ -97,6 +98,8 @@ const Signup = () => {
       return;
     }
     console.log(pics);
+
+    // Upload profile pic
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
@@ -105,7 +108,7 @@ const Signup = () => {
       fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
         method: "post",
         body: data,
-      })
+      })   
         .then((res) => res.json())
         .then((data) => {
           setPic(data.url.toString());

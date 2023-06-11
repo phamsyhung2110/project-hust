@@ -53,9 +53,12 @@ const Login = () => {
         isClosable: true,
         position: "bottom",
       });
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      await localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history.push("/chats");
+      setTimeout(() => {
+        history.push("/chats"); //redirect to chat page
+      }, 200);
+      
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -70,6 +73,9 @@ const Login = () => {
   };
 
   return (
+    // VStack: used to stack elements in the vertical direction
+    // HStack: used to stack elements in the horizontal direction
+    // Stack: used to stack elements in the vertical or horizontal direction
     <VStack spacing="10px">
       <FormControl id="email" isRequired>
         <FormLabel>Email Address</FormLabel>
@@ -92,6 +98,7 @@ const Login = () => {
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
               {show ? "Hide" : "Show"}
+              {/* Hide or show pw */}
             </Button>
           </InputRightElement>
         </InputGroup>
