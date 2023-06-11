@@ -37,10 +37,11 @@ const Login = () => {
         headers: {
           "Content-type": "application/json",
         },
+        baseUrl: 'http://localhost:8800'
       };
 
       const { data } = await axios.post(
-        "/api/user/login",
+        "http://localhost:8800/api/user/login",
         { email, password },
         config
       );
