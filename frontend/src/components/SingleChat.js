@@ -17,7 +17,10 @@ import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
 // const ENDPOINT = process.env.REACT_APP_API_URL; 
 // const ENDPOINT = "http://3.229.10.249:5000"
-const ENDPOINT = "http://localhost:5000"
+// const ENDPOINT = "http://localhost:5000"
+
+const ENDPOINT = "http://localhost:8800"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
