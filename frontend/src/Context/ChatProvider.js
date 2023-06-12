@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const ChatContext = createContext();
+// Create context
+const ChatContext = createContext(); 
 
+// Tạo một thành phần ChatProvider để cung cấp giá trị cho Context và quản lý trạng thái của ứng dụng chat
 const ChatProvider = ({ children }) => {
   const [selectedChat, setSelectedChat] = useState();
   const [user, setUser] = useState();

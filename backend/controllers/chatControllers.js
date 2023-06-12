@@ -13,6 +13,8 @@ const accessChat = asyncHandler(async (req, res) => {
     return res.sendStatus(400);
   }
 
+  // Tìm kiếm cuộc trò chuyện một người dùng với người dùng khác dựa trên userId 
+  // và req.user._id (ID của người dùng hiện tại)
   var isChat = await Chat.find({
     isGroupChat: false,
     $and: [
@@ -22,12 +24,15 @@ const accessChat = asyncHandler(async (req, res) => {
   })
     .populate("users", "-password")
     .populate("latestMessage");
-
+  //Các thông tin về người gửi latest không được lưu đủ trong bảng Chat bên trên
+  //Lấy đầy đủ thông tin user gửi tin nhắn latest từ bảng User bên dưới 
   isChat = await User.populate(isChat, {
     path: "latestMessage.sender",
     select: "name pic email",
   });
 
+  //Nếu có tồn tại 2 user trong chat ở bên trên thì gửi tin nhắn,
+  //Nếu không thì tạo ra đoạn chat ở phần else
   if (isChat.length > 0) {
     res.send(isChat[0]);
   } else {
@@ -37,8 +42,11 @@ const accessChat = asyncHandler(async (req, res) => {
       users: [req.user._id, userId],
     };
 
+    // Tạo chat trong bảng Chat
     try {
       const createdChat = await Chat.create(chatData);
+
+      //Trả về cuộc trò chuyện vừa tạo, với đầy đủ thông tin của user
       const FullChat = await Chat.findOne({ _id: createdChat._id }).populate(
         "users",
         "-password"
