@@ -16,11 +16,7 @@ import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
 // const ENDPOINT = process.env.REACT_APP_API_URL; 
-<<<<<<< HEAD
-// const ENDPOINT = "http://3.229.10.249:5000"
-=======
->>>>>>> parent of be0e1d4 (edit server cors socket)
-const ENDPOINT = "http://localhost:5000"
+const ENDPOINT = "http://3.229.10.249:5000"
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
