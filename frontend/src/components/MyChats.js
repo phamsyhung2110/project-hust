@@ -1,8 +1,6 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
-import { IconButton, Spinner } from "@chakra-ui/react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getSender } from "../config/ChatLogics";
@@ -12,6 +10,7 @@ import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
 import { getSenderFull } from "../config/ChatLogics";
 import ProfileModal from "./miscellaneous/ProfileModal";
+import testImg from './background.png';
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -48,7 +47,9 @@ const MyChats = ({ fetchAgain }) => {
     fetchChats();
     // eslint-disable-next-line
   }, [fetchAgain]);
+  
 
+  //Nếu chọn 1 đoạn chat thì hiển thị ra khung chat(flex), nếu không sẽ ẩn đi(none)
   return (
     <Box
       d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
@@ -56,12 +57,18 @@ const MyChats = ({ fetchAgain }) => {
       alignItems="center"
       p={3}
       bg="white"
+      position="fixed"
+      top="0"
+      left="0"
+      overflow="hidden"
       w={{ base: "100%", md: "31%" }}
-      borderRadius="lg"
-      borderWidth="1px"
+      h="100%"
+      borderWidth="0.5px"
+      borderColor="#BFC9CA"
       marginLeft={20}
-      marginRight={1}
+      marginRight={20}
     >
+      {/* Tạo Box Mychat, hiển thị các đoạn chat và nút tạo groupchat */}
       <Box
         pb={3}
         px={3}
@@ -78,6 +85,8 @@ const MyChats = ({ fetchAgain }) => {
         paddingTop={2}
       >
         My Chats
+
+        {/* Hiển thị cửa sổ tạo groupchat */}
         <GroupChatModal>
           <Button
             d="flex"
@@ -88,13 +97,15 @@ const MyChats = ({ fetchAgain }) => {
           </Button>
         </GroupChatModal>
       </Box>
+
+      {/* Tạo box hiển thị các đoạn chat, trong box này, có các box con cho từng đoạn chat */}
       <Box
         d="flex"
         flexDir="column"
         p={3}
-        bg="#F8F8F8"
+        bg="white"
         w="100%"
-        h="100%"
+        h="match parent"
         borderRadius="lg"
         overflowY="hidden"
       >
@@ -104,6 +115,8 @@ const MyChats = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
+                // Nếu bấm chọn đoạn chat, nó sẽ đổi sang màu khác,
+                // chữ trong box hiển thị đoạn chat đó sẽ đổi màu đen
                 bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
                 color={selectedChat === chat ? "white" : "black"}
                 px={3}
@@ -112,6 +125,9 @@ const MyChats = ({ fetchAgain }) => {
                 key={chat._id}
               >
                 <Text>
+                  {/* Hiển thị tên user đang chat trong đoạn chat, 
+                  nếu đó là groupchat thì hiển thị tên group
+                   */}
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
@@ -131,68 +147,6 @@ const MyChats = ({ fetchAgain }) => {
           <ChatLoading />
         )}
       </Box>
-      <Box
-        position="fixed"
-        top="0"
-        left="0"
-        width="80px"
-        height="100vh"
-        backgroundColor="#338AFF"
-        color="#fff"
-        borderRadius="lg"
-        
-      >
-      {/* Các biểu tượng tùy chọn */}
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        paddingTop="20px"
-        paddingBottom="5px"
-      >
-        <Box
-          display="flex"
-          margin={3}
-        >
-          {/* <IconButton
-              d={{ base: "flex", md: "none" }}
-              icon={<ArrowBackIcon />}
-              onClick={() => setSelectedChat("")}
-              bg="black"
-          /> */}
-          {/* <>
-            {getSender(user, selectedChat.users)}
-            <ProfileModal
-              user={getSenderFull(user, selectedChat.users)}
-            />
-          </> */}
-          <a href="#" className="active">
-            <IconButton
-                d={{ base: "flex", md: "none" }}
-                icon={<ArrowBackIcon />}
-                onClick={() => setSelectedChat("")}
-                bg="black"
-            />
-            User
-        </a>
-        </Box>
-        <Box
-          display="flex"
-          margin={3}
-          bg="black"
-          borderRadius="10px"
-          fontSize={10}
-        >
-          <a href="#">
-          <img
-            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.veryicon.com%2Ficons%2Fmiscellaneous%2Ftwo-color-icon-library%2Fuser-286.html&psig=AOvVaw3khYSaVXsAQcVwRvvq44nB&ust=1686397046846000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJDA69mMtv8CFQAAAAAdAAAAABAJ"
-            alt="Settings"
-          />
-        </a>
-        </Box>
-        
-      </Box>
-    </Box>
     </Box>
     
   );

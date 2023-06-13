@@ -31,6 +31,9 @@ import { Effect } from "react-notification-badge";
 import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
+import { IconButton } from "@chakra-ui/react";
+import { ArrowBackIcon } from "@chakra-ui/icons";
+// import testImg from './background.png';
 
 function SideDrawer() {
   const [search, setSearch] = useState("");
@@ -56,6 +59,7 @@ function SideDrawer() {
     history.push("/");
   };
 
+  // Hàm tìm kiếm user
   // Báo lỗi khi không nhập gì mà nhấn search
   const handleSearch = async () => {
     if (!search) {
@@ -95,6 +99,8 @@ function SideDrawer() {
     }
   };
 
+  // Hàm truy cập vào đoạn chat với user đã tìm thấy
+  // Hàm accessChat trong file chatController trong backend
   const accessChat = async (userId) => {
     console.log(userId);
 
@@ -106,9 +112,13 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
+      // Gửi post request đến chat api để tạo đoạn chat
       const { data } = await axios.post(`/api/chat`, { userId }, config);
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+      
+      // Set lại setLoading thành false khi không còn load
+      // Set lại setSelectedChat truyền vào data để render ChatProvider
       setSelectedChat(data);
       setLoadingChat(false);
       onClose();
@@ -131,10 +141,12 @@ function SideDrawer() {
         justifyContent="space-between"
         alignItems="center"
         bg="white"
-        w="100%"
+        w="match parent"
         p="5px 10px 5px 10px"
         borderWidth="5px"
         marginLeft={90}
+
+        
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end"  
         >
@@ -238,6 +250,66 @@ function SideDrawer() {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
+      <Box
+        position="fixed"
+        top="0"
+        left="0"
+        width="80px"
+        height="100vh"
+        backgroundColor="#338AFF"
+        color="#fff"
+        
+      >
+      {/* Các biểu tượng tùy chọn */}
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        paddingTop="20px"
+        paddingBottom="5px"
+      >
+        <Box
+          display="flex"
+          margin={3}
+        >
+          {/* <IconButton
+              d={{ base: "flex", md: "none" }}
+              icon={<ArrowBackIcon />}
+              onClick={() => setSelectedChat("")}
+              bg="black"
+          /> */}
+          {/* <>
+            {getSender(user, selectedChat.users)}
+            <ProfileModal
+              user={getSenderFull(user, selectedChat.users)}
+            />
+          </> */}
+          <a href="#" className="active">
+            <IconButton
+                d={{ base: "flex", md: "none" }}
+                icon={<ArrowBackIcon />}
+                onClick={() => setSelectedChat("")}
+                bg="black"
+            />
+            User
+        </a>
+        </Box>
+        <Box
+          display="flex"
+          margin={3}
+          bg="black"
+          borderRadius="10px"
+          fontSize={10}
+        >
+          <a href="#">
+          <img
+            src=""
+          />
+        </a>
+        </Box>
+        
+      </Box>
+    </Box>
     </>
   );
 }
