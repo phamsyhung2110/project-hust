@@ -14,6 +14,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 
+// User model template from chakra ui
 const ProfileModal = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 

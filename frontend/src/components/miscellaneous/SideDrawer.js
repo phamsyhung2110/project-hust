@@ -56,6 +56,7 @@ function SideDrawer() {
     history.push("/");
   };
 
+  // Báo lỗi khi không nhập gì mà nhấn search
   const handleSearch = async () => {
     if (!search) {
       toast({
@@ -70,7 +71,8 @@ function SideDrawer() {
 
     try {
       setLoading(true);
-
+      
+      // Auth với API để có quyền get user
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -137,7 +139,8 @@ function SideDrawer() {
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end"  
         >
           <Button variant="ghost" onClick={onOpen} bg="#D9F1F0" width="50" paddingRight="20">
-            <i className="fas fa-search"></i> 
+          {/* import icon from font awesome icon */}
+            <i className="fas fa-search"></i>
             <Text d={{ base: "none", md: "flex" }} px={4}
               marginLeft={0}
             >
@@ -145,11 +148,14 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
+
+        {/* Draw the tile */}
         <Text fontSize="2xl" fontFamily="Work sans">
           Zalo
         </Text>
         <div>
           <Menu>
+          {/* Create the ring icon for notification */}
             <MenuButton p={1}>
               <NotificationBadge
                 count={notification.length}
@@ -175,6 +181,7 @@ function SideDrawer() {
             </MenuList>
           </Menu>
           <Menu>
+            {/* Menu for avatar and view profile */}
             <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
               <Avatar
                 size="sm"
@@ -183,7 +190,10 @@ function SideDrawer() {
                 src={user.pic}
               />
             </MenuButton>
+
+            {/* Menu for My profile or Logout */}
             <MenuList>
+              {/* When click to my profile, display the ProfileModal from miscellanous/ */}
               <ProfileModal user={user}>
                 <MenuItem>My Profile</MenuItem>{" "}
               </ProfileModal>
@@ -193,12 +203,14 @@ function SideDrawer() {
           </Menu>
         </div>
       </Box>
-
+      
+      {/* Hiện lên cừa sổ khi bấm vào search user */}
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
           <DrawerBody>
+            {/* Nhập vào text để search */}
             <Box d="flex" pb={2}>
               <Input
                 placeholder="Search by name or email"
@@ -209,6 +221,8 @@ function SideDrawer() {
               
               <Button onClick={handleSearch}>Go</Button>
             </Box>
+            {/* Nếu loading thì render ChatLoading, nếu không thì
+            hiển thị danh sách user tìm thấy */}
             {loading ? (
               <ChatLoading />
             ) : (
