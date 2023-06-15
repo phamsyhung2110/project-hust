@@ -5,6 +5,9 @@ const generateToken = require("../config/generateToken");
 //@description     Get or Search all users
 //@route           GET /api/user?search=
 //@access          Public
+
+// Hàm allUsers dùng cho search user, nó lấy keyword từ request,
+// /api/user?search=, nếu ko tìm thấy sẽ trả về rỗng
 const allUsers = asyncHandler(async (req, res) => {
   const keyword = req.query.search
     ? {
@@ -82,4 +85,58 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { allUsers, registerUser, authUser };
+const addFriend = asyncHandler(async (req, res) => {
+  const { friendId, _id } = req.body;
+
+  if (!friendId) {
+    res.status(400);
+    throw new Error("Friend ID is required");
+  }
+
+  //Tìm user đang đăng nhập trong DB
+  const currentUser = await User.findById(_id);
+
+  //Tìm trong danh sách bạn bè của user hiện tại
+  const findFriend = currentUser.friends.includes(friendId);
+  //Tìm user trong DB từ friendId
+  const friend = await User.findById(friendId);
+
+  console.log("User: ", currentUser)
+  console.log("Friend: ", friend)
+
+  //Nếu ko thấy user từ friendId thì báo user notfound
+  if (!friend) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  //Nếu user ID đã tồn tại trong danh sách friend thì báo đã tồn tại
+  if (findFriend) {
+    res.status(404);
+    throw new Error("Friend already exists");
+  }
+
+  //Lưu lại friend Id vào danh sách friend
+  //của user hiện tại
+  currentUser.friends.push(friendId);
+  await currentUser.save();
+
+  //Trả về tất cả danh sách bạn bè của user hiện tại sau khi add friend
+  res.status(200).json({
+    message: "Friend added successfully",
+    friends: currentUser.friends,
+  });
+});
+
+
+const allFriends = asyncHandler(async (req, res) => {
+  const currentUser = await User.findById(req.params.userId).populate("friends", "-password");;
+
+  if (!currentUser) {
+    res.status(404)
+    throw new Error("Current user not found or being deleted");
+  }
+  res.status(200).json(currentUser.friends);
+  // res.status(200).json(req.user.friends);
+})
+
+module.exports = { allUsers, registerUser, authUser, addFriend, allFriends };
