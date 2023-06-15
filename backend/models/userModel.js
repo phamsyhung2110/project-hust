@@ -17,7 +17,17 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
-    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    friends: [{ 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "User" }],
+    requested: [{ // Danh sách người đã gửi lời mời đi
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    friendRequests: [{ // Danh sách lời mời mà người khác gửi cho mình
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
   },
   { timestaps: true }
 );
