@@ -21,10 +21,12 @@ const userSchema = mongoose.Schema(
   { timestaps: true }
 );
 
+//SO sánh pw đã nhập với pw hiện tại trong DB, sử dụng bcrypt
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+// Mã hóa pw trước khi lưu vào DB
 userSchema.pre("save", async function (next) {
   if (!this.isModified) {
     next();
