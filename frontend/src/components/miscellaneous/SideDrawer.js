@@ -250,66 +250,8 @@ function SideDrawer() {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-      <Box
-        position="fixed"
-        top="0"
-        left="0"
-        width="80px"
-        height="100vh"
-        backgroundColor="#338AFF"
-        color="#fff"
-        
-      >
-      {/* Các biểu tượng tùy chọn */}
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        paddingTop="20px"
-        paddingBottom="5px"
-      >
-        <Box
-          display="flex"
-          margin={3}
-        >
-          {/* <IconButton
-              d={{ base: "flex", md: "none" }}
-              icon={<ArrowBackIcon />}
-              onClick={() => setSelectedChat("")}
-              bg="black"
-          /> */}
-          {/* <>
-            {getSender(user, selectedChat.users)}
-            <ProfileModal
-              user={getSenderFull(user, selectedChat.users)}
-            />
-          </> */}
-          <a href="#" className="active">
-            <IconButton
-                d={{ base: "flex", md: "none" }}
-                icon={<ArrowBackIcon />}
-                onClick={() => setSelectedChat("")}
-                bg="black"
-            />
-            User
-        </a>
-        </Box>
-        <Box
-          display="flex"
-          margin={3}
-          bg="black"
-          borderRadius="10px"
-          fontSize={10}
-        >
-          <a href="#">
-          <img
-            src=""
-          />
-        </a>
-        </Box>
-        
-      </Box>
-    </Box>
+      {/* Thanh navbar phía trái */}
+      
     </>
   );
 }

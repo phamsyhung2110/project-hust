@@ -57,23 +57,23 @@ const MyChats = ({ fetchAgain }) => {
       alignItems="center"
       p={3}
       bg="white"
-      position="fixed"
-      top="0"
-      left="0"
+      // position="fixed"
+      // top="0"
+      // left="0"
       overflow="hidden"
       w={{ base: "100%", md: "31%" }}
       h="100%"
       borderWidth="0.5px"
       borderColor="#BFC9CA"
       marginLeft={20}
-      marginRight={20}
+      marginRight={1}
     >
       {/* Tạo Box Mychat, hiển thị các đoạn chat và nút tạo groupchat */}
       <Box
         pb={3}
         px={3}
         bg="#33ACFF"
-        borderRadius="8px"
+        borderRadius="3px"
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="Work sans"
         d="flex"
