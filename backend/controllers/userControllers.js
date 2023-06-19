@@ -5,6 +5,9 @@ const generateToken = require("../config/generateToken");
 //@description     Get or Search all users
 //@route           GET /api/user?search=
 //@access          Public
+
+// Hàm allUsers dùng cho search user, nó lấy keyword từ request,
+// /api/user?search=, nếu ko tìm thấy sẽ trả về rỗng
 const allUsers = asyncHandler(async (req, res) => {
   const keyword = req.query.search
     ? {
@@ -81,5 +84,6 @@ const authUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid Email or Password");
   }
 });
+
 
 module.exports = { allUsers, registerUser, authUser };
