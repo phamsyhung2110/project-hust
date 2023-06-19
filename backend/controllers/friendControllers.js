@@ -63,7 +63,7 @@ const addFriend = asyncHandler(async (req, res) => {
   });
   
   
-  const allFriends = asyncHandler(async (req, res) => {
+const allFriends = asyncHandler(async (req, res) => {
     //Tìm user đang đăng nhập hiện tại và thông tin bạn bè trong danh sách
     const currentUser = await User.findById(req.params.userId).populate("friends", "-password");;
   
@@ -75,46 +75,72 @@ const addFriend = asyncHandler(async (req, res) => {
     // res.status(200).json(req.user.friends);
   })
 
-  const rejectFriendRequest = asyncHandler(async (req, res) => {
-    const { friendId, _id } = req.body;
-  
+const handleFriendRequest = asyncHandler(async (currentUser, friendId, userId, accept = false) => {
+
+    // Check xem friendId có được truyền vào ko.
     if (!friendId) {
-      res.status(400);
       throw new Error('Friend ID is required');
     }
-  
-    const currentUser = await User.findById(_id);
+    //Tìm user dựa trên friendId được truyền vào.
     const friend = await User.findById(friendId);
-    console.log("curent User reject: ", currentUser)
-    console.log("Friend reject: ", friend)
+    
+    //Nếu ko tìm thấy user dựa trên friendId thì báo notfound
     if (!friend) {
-      res.status(404);
       throw new Error('User not found');
     }
-
-    // Kiểm tra xem đã nhận được lời mời kết bạn từ friendId chưa
+    //Check xem đã có trong danh sách lời mời chưa
     const isFriendRequest = currentUser.friendRequests.includes(friendId);
     if (!isFriendRequest) {
-      res.status(400);
       throw new Error('Friend request not found');
     }
+    
+    // Loại bỏ lời mời kết bạn ở cả user requested và user hiện tại
+    currentUser.friendRequests = currentUser.friendRequests.filter((requestId) => requestId.toString() !== friendId);
+    friend.requested = friend.requested.filter((requestId) => requestId.toString() !== userId);
   
-    // Loại bỏ lời mời kết bạn
-    currentUser.friendRequests = currentUser.friendRequests.filter(
-      (requestId) => requestId.toString() !== friendId
-    );
-    friend.requested = friend.requested.filter(
-      (requestId) => requestId.toString() !== _id
-    );
+    if (accept) {
+      // Nếu chấp nhận lời mời, accept=true, thêm friendId vào danh sách bạn bè của cả hai người dùng
+      currentUser.friends.push(friendId);
+      friend.friends.push(userId);
+    }
   
-    await currentUser.save();
-    await friend.save();
+    // Lưu cập nhật vào cả hai người dùng
+    await Promise.all([currentUser.save(), friend.save()]);
   
-    res.status(200).json({
-      message: 'Friend request rejected successfully',
-      friendRequests: currentUser.friendRequests,
-    });
+    if (accept) {
+      return {
+        message: 'Friend request accepted successfully',
+        friends: currentUser.friends,
+      };
+    } else {
+      return {
+        message: 'Friend request rejected successfully',
+        friendRequests: currentUser.friendRequests,
+      };
+    }
   });
   
+const rejectFriendRequest = asyncHandler(async (req, res) => {
+    const { friendId, _id } = req.body;
+    const currentUser = await User.findById(_id);
+  
+    // Gọi hàm handleFriendRequest để từ chối lời mời kết bạn
+    const result = await handleFriendRequest(currentUser, friendId, _id);
+  
+    res.status(200).json(result);
+  });
+  
+const acceptFriendRequest = asyncHandler(async (req, res) => {
+    const { friendId, userId } = req.body;
+    const currentUser = await User.findById(userId);
+  
+    // Gọi hàm handleFriendRequest để chấp nhận lời mời kết bạn
+    const result = await handleFriendRequest(currentUser, friendId, userId, true);
+  
+    res.status(200).json(result);
+  });
+  
+  
+  
 
-  module.exports = { addFriend, allFriends,rejectFriendRequest };
+module.exports = { addFriend, allFriends,rejectFriendRequest, acceptFriendRequest };
