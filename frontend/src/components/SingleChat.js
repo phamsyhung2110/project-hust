@@ -248,18 +248,18 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <Input
                   variant="filled"
                   bg="white"
-                  borderColor="black"
+                  // borderColor="black"
                   borderRadius="0px"
-                  // borderTopWidth="1.5px solid"
+                  borderTop="1px solid"
                   placeholder="Enter a message.."
                   value={newMessage}
                   onChange={typingHandler}
-                  position="fixed"
+                  position="relative"
                   right="0"
-                  left="610px"
-                  bottom="0"
+                  left="0"
+                  bottom="14"
                   paddingTop="30px"
-                  paddingBottom="30px"
+                  paddingBottom="50px"
                   // width: calc(100% - 300px)
                   marginTop="50"
                 >
