@@ -7,16 +7,20 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 const NavBar = () => {
     return (
         <Box
+            fontSize={{ base: "20px", md: "20px" }}
+            fontFamily="Work sans"
+            d="flex"
+            justifyContent="space-between"
+            alignItems="center"
             position="absolute"
             top="0"
             left="0"
             bottom="0"
             width="80px"
             height="match-parent"
-            backgroundColor="#338AFF"
+            backgroundColor="#d8dddd"
             color="#fff"
-            
-            
+            overflow="hidden"
         >
         {/* Các biểu tượng tùy chọn */}
             <Box

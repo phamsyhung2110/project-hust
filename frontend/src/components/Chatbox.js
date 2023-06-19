@@ -15,7 +15,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
       p={3}
       bg="white"
       w={{ base: "100%", md: "68%" }}
-      borderRadius="lg"
+      h="93.7vh"
       borderWidth="1px"
     >
       <NavBar />

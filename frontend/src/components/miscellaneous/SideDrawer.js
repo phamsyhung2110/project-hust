@@ -143,8 +143,7 @@ function SideDrawer() {
         bg="white"
         w="match parent"
         p="5px 10px 5px 10px"
-        borderWidth="5px"
-        marginLeft={90}
+        marginLeft={80.5}
 
         
       >

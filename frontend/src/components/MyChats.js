@@ -66,7 +66,8 @@ const MyChats = ({ fetchAgain }) => {
       borderWidth="0.5px"
       borderColor="#BFC9CA"
       marginLeft={20}
-      marginRight={1}
+      marginRight={0}
+      paddingTop={3}
     >
       {/* Tạo Box Mychat, hiển thị các đoạn chat và nút tạo groupchat */}
       <Box
