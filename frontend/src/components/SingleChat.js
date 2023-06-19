@@ -250,17 +250,17 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   bg="white"
                   borderColor="black"
                   borderRadius="0px"
-                  borderTopWidth="1.5px solid"
+                  // borderTopWidth="1.5px solid"
                   placeholder="Enter a message.."
                   value={newMessage}
                   onChange={typingHandler}
                   position="fixed"
                   right="0"
-                  left="auto"
+                  left="610px"
+                  bottom="0"
                   paddingTop="30px"
                   paddingBottom="30px"
-                  width="138vh"
-                  bottom="0"
+                  // width: calc(100% - 300px)
                   marginTop="50"
                 >
                   

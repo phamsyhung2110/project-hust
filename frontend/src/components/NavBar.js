@@ -9,8 +9,8 @@ const NavBar = () => {
         <Box
             fontSize={{ base: "20px", md: "20px" }}
             fontFamily="Work sans"
-            d="flex"
             justifyContent="space-between"
+            display={{ base: "none", md: "flex" }}
             alignItems="center"
             position="fixed"
             top="0"
@@ -18,8 +18,8 @@ const NavBar = () => {
             bottom="0"
             width="80px"
             height="match-parent"
-            backgroundColor="#556198"
-            color="#fff"
+            backgroundColor="white"
+            color="black"
             overflow="hidden"
         >
         {/* Các biểu tượng tùy chọn */}
