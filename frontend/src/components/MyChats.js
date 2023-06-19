@@ -55,35 +55,36 @@ const MyChats = ({ fetchAgain }) => {
       d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
       flexDir="column"
       alignItems="center"
-      p={3}
+      p={0}
       bg="white"
       // position="fixed"
-      // top="0"
-      // left="0"
+      // top="50.1"
+      left="0"
       overflow="hidden"
       w={{ base: "100%", md: "31%" }}
       h="100%"
-      borderWidth="0.5px"
-      borderColor="#BFC9CA"
+      borderWidth="0.1px"
+      borderColor="black"
       marginLeft={20}
       marginRight={0}
-      paddingTop={3}
+      paddingTop={0}
     >
       {/* Tạo Box Mychat, hiển thị các đoạn chat và nút tạo groupchat */}
       <Box
         pb={3}
         px={3}
-        bg="#33ACFF"
-        borderRadius="3px"
+        bg="white"
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="Work sans"
         d="flex"
         w="100%"
         justifyContent="space-between"
         alignItems="center"
-        marginLeft={1}
-        marginBottom={3}
+        marginLeft={0}
+        marginBottom={0}
         paddingTop={2}
+        borderBottom="1.5px solid"
+        borderColor="#d9dce8"
       >
         My Chats
 
@@ -98,12 +99,13 @@ const MyChats = ({ fetchAgain }) => {
           </Button>
         </GroupChatModal>
       </Box>
+      
 
       {/* Tạo box hiển thị các đoạn chat, trong box này, có các box con cho từng đoạn chat */}
       <Box
         d="flex"
         flexDir="column"
-        p={3}
+        p={2}
         bg="white"
         w="100%"
         h="match parent"
@@ -118,7 +120,7 @@ const MyChats = ({ fetchAgain }) => {
                 cursor="pointer"
                 // Nếu bấm chọn đoạn chat, nó sẽ đổi sang màu khác,
                 // chữ trong box hiển thị đoạn chat đó sẽ đổi màu đen
-                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
+                bg={selectedChat === chat ? "#a1a1c6" : "#E8E8E8"}
                 color={selectedChat === chat ? "white" : "black"}
                 px={3}
                 py={2}

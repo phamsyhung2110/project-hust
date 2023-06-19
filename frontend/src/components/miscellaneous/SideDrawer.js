@@ -143,13 +143,23 @@ function SideDrawer() {
         bg="white"
         w="match parent"
         p="5px 10px 5px 10px"
-        marginLeft={80.5}
-
+        marginLeft="20px"
+        borderRight="1.5px solid"
+        borderColor="black"
         
       >
-        <Tooltip label="Search Users to chat" hasArrow placement="bottom-end"  
+        <Tooltip 
+          label="Search Users to chat" 
+          hasArrow placement="bottom-end"
         >
-          <Button variant="ghost" onClick={onOpen} bg="#D9F1F0" width="50" paddingRight="20">
+          <Button variant="ghost" 
+            onClick={onOpen} 
+            bg="#D9F1F0" 
+            width="match parent" 
+            paddingRight="60"
+            marginLeft={20}
+            >
+            
           {/* import icon from font awesome icon */}
             <i className="fas fa-search"></i>
             <Text d={{ base: "none", md: "flex" }} px={4}

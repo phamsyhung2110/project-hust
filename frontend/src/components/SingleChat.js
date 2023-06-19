@@ -173,6 +173,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             d="flex"
             justifyContent={{ base: "space-between" }}
             alignItems="center"
+            paddingBottom="20px"
+            borderBottom="1.5px solid"
+            borderColor="#d9dce8"
             
           >
             <IconButton
@@ -204,10 +207,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bg="#E8E8E8"
+            bg="white"
             w="100%"
             h="100%"
-            borderRadius="lg"
             overflowY="hidden"
           >
             {loading ? (
@@ -220,11 +222,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               />
             ) : (
               <div className="messages">
-                <ScrollableChat messages={messages} />
+                <ScrollableChat
+                  messages={messages} />
               </div>
             )}
-
-            <FormControl
+          </Box>
+          <FormControl
               onKeyDown={sendMessage}
               id="first-name"
               isRequired
@@ -242,15 +245,28 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               ) : (
                 <></>
               )}
-              <Input
-                variant="filled"
-                bg="#E0E0E0"
-                placeholder="Enter a message.."
-                value={newMessage}
-                onChange={typingHandler}
-              />
+                <Input
+                  variant="filled"
+                  bg="white"
+                  borderColor="black"
+                  borderRadius="0px"
+                  borderTopWidth="1.5px solid"
+                  placeholder="Enter a message.."
+                  value={newMessage}
+                  onChange={typingHandler}
+                  position="fixed"
+                  right="0"
+                  left="auto"
+                  paddingTop="30px"
+                  paddingBottom="30px"
+                  width="138vh"
+                  bottom="0"
+                  marginTop="50"
+                >
+                  
+                </Input>
+              
             </FormControl>
-          </Box>
         </>
       ) : (
         // to get socket.io on same page
