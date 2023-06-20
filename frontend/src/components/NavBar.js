@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Button } from "@chakra-ui/button";
 
 const NavBar = () => {
     return (
@@ -11,9 +12,9 @@ const NavBar = () => {
             fontSize={{ base: "20px", md: "20px" }}
             fontFamily="Work sans"
             justifyContent="space-between"
-            display={{ base: "none", md: "flex" }}
-            // alignItems="center"
+            // display="flex"
             position="fixed"
+            // allignItems="center"
             top="0"
             left="0"
             bottom="0"
@@ -26,33 +27,40 @@ const NavBar = () => {
             // borderRight="1px solid black"
         >   
         {/* Các biểu tượng tùy chọn */}
-            <Box
-                display="flex"
-                flexDirection="column"
+            <Button 
+                variant="ghost" 
+                // onClick={onOpen} 
+                bg="#a1a1c6" 
+                width="80px"
                 alignItems="center"
-                paddingTop="20px"
-                paddingBottom="5px"
+                // paddingRight=""
+                marginBottom="10px"
+                _hover={{ backgroundColor: "yellow" }}
             >
-                <Box
-                    display="flex"
-                    margin={3}
-                    marginLeft="25px"
-                    height="60px"
-                    width="60px"
-                    backgroundColor="white"
-                >   
-                    <FontAwesomeIcon icon="fa-solid fa-house" />
-                </Box>
-                <Box
-                    display="flex"
-                    margin={3}
-                    
-                >   
-                    <FontAwesomeIcon icon="fa-solid fa-house" />
-                </Box>
-                
-                
-            </Box>
+                <FontAwesomeIcon icon="fa-solid fa-house" />
+            </Button>
+            <Button 
+                variant="ghost" 
+                // onClick={onOpen} 
+                bg="yellow" 
+                width="80px"
+                alignItems="center"
+                // paddingRight=""
+                marginBottom="10px"
+            >
+                <FontAwesomeIcon icon="fa-solid fa-house" />
+            </Button>
+            <Button 
+                variant="ghost" 
+                // onClick={onOpen} 
+                bg="green" 
+                width="80px"
+                alignItems="center"
+                // paddingRight=""
+                marginBottom="10px"
+            >
+                <FontAwesomeIcon icon="fa-solid fa-house" />
+            </Button> 
         </Box>
     )
 }

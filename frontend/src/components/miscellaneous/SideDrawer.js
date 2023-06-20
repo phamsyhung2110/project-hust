@@ -154,13 +154,14 @@ function SideDrawer() {
           label="Search Users to chat" 
           hasArrow placement="bottom-end"
         >
-          <Button variant="ghost" 
+          <Button 
+            variant="ghost" 
             onClick={onOpen} 
             bg="#a1a1c6" 
             width="300px"
             alignItems="center"
             // paddingRight=""
-            marginLeft={1}
+            marginLeft={0}
             >
             
           {/* import icon from font awesome icon */}
