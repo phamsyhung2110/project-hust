@@ -33,6 +33,8 @@ import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
 import { IconButton } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 // import testImg from './background.png';
 
 function SideDrawer() {
@@ -143,7 +145,7 @@ function SideDrawer() {
         bg="white"
         w="match parent"
         p="5px 10px 5px 10px"
-        marginLeft="70px"
+        marginLeft="80px"
         marginBottom="100px"
         // borderLeft="1px solid #e2e4e5"
         
@@ -162,7 +164,10 @@ function SideDrawer() {
             >
             
           {/* import icon from font awesome icon */}
-            <i className="fas fa-search"></i>
+            {/* <i className="fa-duotone fa-house fa-beat"></i> */}
+            {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" beat /> */}
+            
+            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
             <Text d={{ base: "none", md: "flex" }} px={4}
               marginLeft={0}
             >

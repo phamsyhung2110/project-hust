@@ -3,6 +3,7 @@ import { IconButton, Spinner, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const NavBar = () => {
     return (
@@ -11,18 +12,19 @@ const NavBar = () => {
             fontFamily="Work sans"
             justifyContent="space-between"
             display={{ base: "none", md: "flex" }}
-            alignItems="center"
+            // alignItems="center"
             position="fixed"
             top="0"
             left="0"
             bottom="0"
             width="80px"
             height="match-parent"
-            backgroundColor="#583ea1"
-            color="White"
+            // backgroundColor="#583ea1"
+            backgroundColor="white"
+            color="black"
             overflow="hidden"
             // borderRight="1px solid black"
-        >
+        >   
         {/* Các biểu tượng tùy chọn */}
             <Box
                 display="flex"
@@ -31,28 +33,24 @@ const NavBar = () => {
                 paddingTop="20px"
                 paddingBottom="5px"
             >
+                <Box
+                    display="flex"
+                    margin={3}
+                    marginLeft="25px"
+                    height="60px"
+                    width="60px"
+                    backgroundColor="white"
+                >   
+                    <FontAwesomeIcon icon="fa-solid fa-house" />
+                </Box>
+                <Box
+                    display="flex"
+                    margin={3}
+                    
+                >   
+                    <FontAwesomeIcon icon="fa-solid fa-house" />
+                </Box>
                 
-                <Box
-                    display="flex"
-                    margin={3}
-                >
-                    <a href="#" className="active">
-                        User
-                    </a>
-                </Box>
-                <Box
-                    display="flex"
-                    margin={3}
-                    bg="black"
-                    borderRadius="10px"
-                    fontSize={10}
-                >
-                <a href="#">
-                <img
-                    src=""
-                />
-                </a>
-                </Box>
                 
             </Box>
         </Box>
