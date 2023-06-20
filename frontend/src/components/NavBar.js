@@ -30,6 +30,7 @@ const NavBar = () => {
                 paddingTop="20px"
                 paddingBottom="5px"
             >
+                
                 <Box
                     display="flex"
                     margin={3}
