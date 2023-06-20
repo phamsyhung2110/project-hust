@@ -18,9 +18,10 @@ const NavBar = () => {
             bottom="0"
             width="80px"
             height="match-parent"
-            backgroundColor="white"
-            color="black"
+            backgroundColor="#583ea1"
+            color="White"
             overflow="hidden"
+            // borderRight="1px solid black"
         >
         {/* Các biểu tượng tùy chọn */}
             <Box

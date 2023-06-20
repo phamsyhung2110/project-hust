@@ -63,8 +63,8 @@ const MyChats = ({ fetchAgain }) => {
       overflow="hidden"
       w={{ base: "100%", md: "31%" }}
       h="100%"
-      borderWidth="0.1px"
-      borderColor="black"
+      // borderWidth="0.1px"
+      // borderColor="#c6c9cb"
       marginLeft={20}
       marginRight={0}
       paddingTop={0}
@@ -73,7 +73,7 @@ const MyChats = ({ fetchAgain }) => {
       <Box
         pb={3}
         px={3}
-        bg="white"
+        bg="#e2e4e5"
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="Work sans"
         d="flex"
@@ -106,10 +106,9 @@ const MyChats = ({ fetchAgain }) => {
         d="flex"
         flexDir="column"
         p={2}
-        bg="white"
+        bg="#e2e4e5"
         w="100%"
         h="match parent"
-        borderRadius="lg"
         overflowY="hidden"
       >
         {chats ? (
@@ -120,7 +119,7 @@ const MyChats = ({ fetchAgain }) => {
                 cursor="pointer"
                 // Nếu bấm chọn đoạn chat, nó sẽ đổi sang màu khác,
                 // chữ trong box hiển thị đoạn chat đó sẽ đổi màu đen
-                bg={selectedChat === chat ? "#a1a1c6" : "#E8E8E8"}
+                bg={selectedChat === chat ? "#a1a1c6" : "white"}
                 color={selectedChat === chat ? "white" : "black"}
                 px={3}
                 py={2}

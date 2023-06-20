@@ -17,9 +17,11 @@ const Chatpage = () => {
         position="fixed"
         justifyContent="space-between" 
         w="100%" 
-        h="100vh" 
-        pt="50px"
-        // top="50px"
+        h="100vh"
+        // marginTop="100px" 
+        // pt="50px"
+        
+        top="50px"
         bottom="0vh"
         >
         {user && <MyChats fetchAgain={fetchAgain} />}

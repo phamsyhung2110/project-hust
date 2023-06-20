@@ -143,9 +143,9 @@ function SideDrawer() {
         bg="white"
         w="match parent"
         p="5px 10px 5px 10px"
-        marginLeft="20px"
-        borderRight="1.5px solid"
-        borderColor="black"
+        marginLeft="70px"
+        marginBottom="100px"
+        // borderLeft="1px solid #e2e4e5"
         
       >
         <Tooltip 
@@ -154,10 +154,11 @@ function SideDrawer() {
         >
           <Button variant="ghost" 
             onClick={onOpen} 
-            bg="#D9F1F0" 
-            width="match parent" 
-            paddingRight="60"
-            marginLeft={20}
+            bg="#a1a1c6" 
+            width="300px"
+            alignItems="center"
+            // paddingRight=""
+            marginLeft={1}
             >
             
           {/* import icon from font awesome icon */}

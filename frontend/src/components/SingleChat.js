@@ -26,7 +26,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [socketConnected, setSocketConnected] = useState(false);
   const [typing, setTyping] = useState(false);
   const [istyping, setIsTyping] = useState(false);
-  const toast = useToast();
+  const toast = useToast(); 
 
   const defaultOptions = {
     loop: true,
@@ -175,7 +175,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             alignItems="center"
             paddingBottom="20px"
             borderBottom="1.5px solid"
-            borderColor="#d9dce8"
+            borderColor="#e2e4e5"
             
           >
             <IconButton
@@ -257,16 +257,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   position="relative"
                   right="0"
                   left="0"
-                  bottom="14"
+                  bottom="0vh"
                   paddingTop="30px"
-                  paddingBottom="50px"
-                  // width: calc(100% - 300px)
-                  marginTop="50"
+                  paddingBottom="30px"
+                  // marginTop="0"
+                  marginBottom="50"
                 >
                   
                 </Input>
               
-            </FormControl>
+            </FormControl>  
         </>
       ) : (
         // to get socket.io on same page
