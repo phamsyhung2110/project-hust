@@ -74,32 +74,6 @@ const NavBar = () => {
         >
             <div>
             <Menu>
-            {/* Create the ring icon for notification */}
-                <MenuButton p={1}>
-                <NotificationBadge
-                    count={notification.length}
-                    effect={Effect.SCALE}
-                />
-                <BellIcon fontSize="2xl" m={1} />
-                </MenuButton>
-                <MenuList pl={2}>
-                {!notification.length && "No New Messages"}
-                {notification.map((notif) => (
-                    <MenuItem
-                    key={notif._id}
-                    onClick={() => {
-                        setSelectedChat(notif.chat);
-                        setNotification(notification.filter((n) => n !== notif));
-                    }}
-                    >
-                    {notif.chat.isGroupChat
-                        ? `New Message in ${notif.chat.chatName}`
-                        : `New Message from ${getSender(user, notif.chat.users)}`}
-                    </MenuItem>
-                ))}
-                </MenuList>
-            </Menu>
-            <Menu>
                 {/* Menu for avatar and view profile */}
                 <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
                 <Avatar
@@ -120,7 +94,7 @@ const NavBar = () => {
                 <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                 </MenuList>
             </Menu>
-            </div>
+        </div>
         {/* Các biểu tượng tùy chọn */}
             <Button 
                 variant="ghost" 
@@ -262,6 +236,78 @@ const NavBar = () => {
                 })}
             >
                 <FontAwesomeIcon icon="fa-solid fa-house" />
+            </Button>
+            <Button 
+                variant="ghost" 
+                // onClick={onOpen} 
+                // bg="#a1a1c6" 
+                width="60px"
+                alignItems="center"
+                // paddingRight=""
+                marginBottom="10px"
+                marginTop="10px"
+                marginLeft="15px"
+                // marginRight="35px"
+                transition="transform 0.5s"
+                bg="transparent"
+                border="none"
+                color="#00509d"
+                _hover={{
+                        width: "40px",
+                        marginLeft: "25px",
+                        marginRight: "15px",
+                        // backgroundColor: "00509d",
+                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        transform: "scale(1.1)", 
+                        color: "white"
+                    }}
+                _focus={{
+                        border: "none",
+                        boxShadow: "none",
+                        focusBorderColor: "transparent",
+                        focusRing: "0",
+                        transform: "scale(1.1)",
+                        color: "white",
+                        // marginTop: "10px",
+                        // marginLeft: "25px",
+                        // margin: "15px"
+                    }}
+            >
+                <Menu>
+            {/* Create the ring icon for notification */}
+                <MenuButton p={1}>
+                <NotificationBadge
+                    count={notification.length}
+                    effect={Effect.SCALE}
+                />
+                <BellIcon 
+                    fontSize="2xl" 
+                    m={1} 
+                    // marginLeft="30px"
+                    // color="#00509d"
+                    // marginBottom="10px"
+                    // marginTop="10px"
+                    
+                />
+                </MenuButton>
+                <MenuList pl={1}>
+                {!notification.length && "No New Messages"}
+                {notification.map((notif) => (
+                    <MenuItem
+                    key={notif._id}
+                    onClick={() => {
+                        setSelectedChat(notif.chat);
+                        setNotification(notification.filter((n) => n !== notif));
+                    }}
+                    >
+                    {notif.chat.isGroupChat
+                        ? `New Message in ${notif.chat.chatName}`
+                        : `New Message from ${getSender(user, notif.chat.users)}`}
+                    </MenuItem>
+                ))}
+                </MenuList>
+                
+                </Menu>
             </Button>
         </Box>
     )
