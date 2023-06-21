@@ -13,6 +13,7 @@ import ProfileModal from "./miscellaneous/ProfileModal";
 import testImg from './background.png';
 import SideDrawer from "./miscellaneous/SideDrawer";
 import { Tooltip } from "@chakra-ui/tooltip";
+import NavBar from "./NavBar";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -71,6 +72,8 @@ const MyChats = ({ fetchAgain }) => {
       marginRight={0}
       paddingTop={0}
     >
+      {/* Gọi thanh NavBar */}
+      <NavBar />
       {/* Tạo Box Mychat, hiển thị các đoạn chat và nút tạo groupchat */}
       <Box
         pb={3}

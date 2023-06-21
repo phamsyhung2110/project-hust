@@ -12,14 +12,15 @@ const Chatpage = () => {
 
   return (
       <div style={{ width: "100%" }}>
-        {user && <NavBar />}
         <Box 
           d="flex"
           position="fixed"
           justifyContent="space-between" 
           w="100%" 
           h="100vh"
+          // marginLeft="50px"
           top="0px"
+          // left=" 50px"
           bottom="0vh"
           >
           {user && <MyChats fetchAgain={fetchAgain} />}
