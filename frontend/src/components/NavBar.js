@@ -46,22 +46,21 @@ const NavBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const history = useHistory();
 
-    useEffect(() => {
-        const handleOutsideClick = (event) => {
-          if (menuButtonRef.current && !menuButtonRef.current.contains(event.target)) {
-            setActiveButton(null); // Đặt lại trạng thái ban đầu khi click bên ngoài
-          }
-        };
     
-        document.addEventListener("click", handleOutsideClick);
-    
-        return () => {
-          document.removeEventListener("click", handleOutsideClick);
-        };
-      }, []);
     const handleButtonClick = (buttonId) => {
         setActiveButton(buttonId);
     };
+    useEffect(() => {
+        const handleOutsideClick = () => {
+          setActiveButton(null);
+        };
+      
+        window.addEventListener("click", handleOutsideClick);
+      
+        return () => {
+          window.removeEventListener("click", handleOutsideClick);
+        };
+      }, []);
     const logoutHandler = () => {
         localStorage.removeItem("userInfo");
         history.push("/");
@@ -80,6 +79,7 @@ const NavBar = () => {
             height="match-parent"
             backgroundColor="#eaf4f4"
             color="black"
+            // onClick={handleOutsideClick}
         >
                 <Menu>
                     {/* Menu for avatar and view profile */}
@@ -128,7 +128,6 @@ const NavBar = () => {
                                 // marginLeft: "25px",
                                 // margin: "15px"
                         }}
-                        ref={menuButtonRef}
                         onClick={() => handleButtonClick(0)}
                         {...(activeButton === 0 && {
                             bgGradient: "linear(to right, #00509d, #00509d)",
@@ -165,9 +164,10 @@ const NavBar = () => {
                     <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                     </MenuList>
                 </Menu>
-
+            
         {/* Các biểu tượng tùy chọn */}
             <Button 
+                // ref={menuButtonRef}
                 variant="ghost" 
                 // onClick={onOpen} 
                 // bg="#a1a1c6" 
@@ -192,15 +192,13 @@ const NavBar = () => {
                         color: "white"
                     }}
                 _focus={{
-                        border: "none",
-                        boxShadow: "none",
-                        focusBorderColor: "transparent",
-                        focusRing: "0",
-                        transform: "scale(1.1)",
-                        color: "white",
-                        // marginTop: "10px",
-                        // marginLeft: "25px",
-                        // margin: "15px"
+                        width: "40px",
+                        marginLeft: "25px",
+                        marginRight: "15px",
+                        // backgroundColor: "00509d",
+                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        transform: "scale(1.1)", 
+                        color: "white"
                     }}
                 onClick={() => handleButtonClick(1)}
                 {...(activeButton === 1 && {
@@ -214,100 +212,7 @@ const NavBar = () => {
             >
                 <FontAwesomeIcon icon="fa-solid fa-house" />
             </Button>
-            <Button 
-                variant="ghost" 
-                // onClick={onOpen} 
-                // bg="#a1a1c6" 
-                width="60px"
-                alignItems="center"
-                // paddingRight=""
-                marginBottom="10px"
-                marginTop="10px"
-                marginLeft="15px"
-                // marginRight="35px"
-                transition="transform 0.5s"
-                bg="transparent"
-                border="none"
-                color="#00509d"
-                _hover={{
-                        width: "40px",
-                        marginLeft: "25px",
-                        marginRight: "15px",
-                        // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
-                        transform: "scale(1.1)", 
-                        color: "white"
-                    }}
-                _focus={{
-                        border: "none",
-                        boxShadow: "none",
-                        focusBorderColor: "transparent",
-                        focusRing: "0",
-                        transform: "scale(1.1)",
-                        color: "white",
-                        // marginTop: "10px",
-                        // marginLeft: "25px",
-                        // margin: "15px"
-                    }}
-                onClick={() => handleButtonClick(2)}
-                {...(activeButton === 2 && {
-                    width: "40px",
-                    marginLeft: "25px",
-                    marginRight: "15px",
-                    bgGradient: "linear(to right, #00509d, #00509d)",
-                    transform: "scale(1.1)",
-                    color: "white"
-                })}
-            >
-                <FontAwesomeIcon icon="fa-solid fa-house" />
-            </Button>
-            <Button 
-                variant="ghost" 
-                // onClick={onOpen} 
-                // bg="#a1a1c6" 
-                width="60px"
-                alignItems="center"
-                // paddingRight=""
-                marginBottom="10px"
-                marginTop="10px"
-                marginLeft="15px"
-                // marginRight="35px"
-                transition="transform 0.5s"
-                bg="transparent"
-                border="none"
-                color="#00509d"
-                _hover={{
-                        width: "40px",
-                        marginLeft: "25px",
-                        marginRight: "15px",
-                        // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
-                        transform: "scale(1.1)", 
-                        color: "white"
-                    }}
-                _focus={{
-                        border: "none",
-                        boxShadow: "none",
-                        focusBorderColor: "transparent",
-                        focusRing: "0",
-                        transform: "scale(1.1)",
-                        color: "white",
-                        // marginTop: "10px",
-                        // marginLeft: "25px",
-                        // margin: "15px"
-                    }}
-                onClick={() => handleButtonClick(3)}
-                {...(activeButton === 3 && {
-                    width: "40px",
-                    marginLeft: "25px",
-                    marginRight: "15px",
-                    bgGradient: "linear(to right, #00509d, #00509d)",
-                    transform: "scale(1.1)",
-                    color: "white"
-                })}
-            >
-                <FontAwesomeIcon icon="fa-solid fa-house" />
-            </Button>
+            
 
             {/* Button for rintone icon */}
             <Button 
@@ -330,14 +235,7 @@ const NavBar = () => {
                         transform: "scale(1.1)", 
                         color: "white"
                     }}
-                _focus={{
-                        border: "none",
-                        boxShadow: "none",
-                        focusBorderColor: "transparent",
-                        focusRing: "0",
-                        transform: "scale(1.1)",
-                        color: "white",
-                    }}
+
             >
                 <Menu>
             {/* Create the ring icon for notification */}
