@@ -65,7 +65,7 @@ const MyChats = ({ fetchAgain }) => {
       h="100%"
       // borderWidth="0.1px"
       // borderColor="#c6c9cb"
-      marginLeft={20}
+      marginLeft={90}
       marginRight={0}
       paddingTop={0}
     >

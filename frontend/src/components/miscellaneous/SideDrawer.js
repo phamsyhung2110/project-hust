@@ -145,7 +145,7 @@ function SideDrawer() {
         bg="white"
         w="match parent"
         p="5px 10px 5px 10px"
-        marginLeft="80px"
+        marginLeft="90px"
         marginBottom="100px"
         // borderLeft="1px solid #e2e4e5"
         
