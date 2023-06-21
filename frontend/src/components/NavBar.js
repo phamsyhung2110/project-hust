@@ -28,6 +28,7 @@ import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
 import { Avatar } from "@chakra-ui/avatar";
 import ProfileModal from "./miscellaneous/ProfileModal";
+import SideDrawer from "./miscellaneous/SideDrawer";
 
 const NavBar = () => {
     const {
@@ -68,6 +69,7 @@ const NavBar = () => {
 
     return (
         <Box
+            d={{ base: "block", md: "block" }}
             fontSize={{ base: "20px", md: "20px" }}
             fontFamily="Work sans"
             justifyContent="space-between"
@@ -85,12 +87,13 @@ const NavBar = () => {
                     {/* Menu for avatar and view profile */}
                     <MenuButton
                         bg="#eaf4f4" 
-                        rightIcon={<ChevronDownIcon />}
+                        // rightIcon={<ChevronDownIcon />}
                         color="#00509d"
                         width="40px"
-                        marginBottom="10px"
                         marginTop="10px"
                         marginLeft="25px"
+                        marginRight="25px"
+                        marginBottom="25px"
                         transition="transform 0.5s"
                         bg="transparent"
                         border="none"
@@ -99,44 +102,40 @@ const NavBar = () => {
                             height: "50px",
                             marginLeft: "25px",
                             marginRight: "15px",
-                            // backgroundColor: "00509d",
                             bgGradient: "linear(to right, #00509d, #00509d)", 
                             transform: "scale(1.1)", 
                             color: "white",
                             borderRadius: "5px",
-                            marginBottom: "0px",
+                            marginBottom: "15px",
                             marginTop: "10px",
                             marginLeft: "20px",
                             marginRight: "25px",
-                            
                         }}
                         _focus={{
-                                border: "none",
-                                boxShadow: "none",
-                                focusBorderColor: "transparent",
-                                focusRing: "0",
-                                transform: "scale(1.1)",
-                                color: "white",
-                                borderRadius: "5px",
-                                width: "50px",
-                                height: "50px",
-                                marginBottom: "0px",
-                                marginTop: "10px",
-                                marginLeft: "20px",
-                                marginRight: "25px",
-                                // marginTop: "10px",
-                                // marginLeft: "25px",
-                                // margin: "15px"
-                        }}
-                        onClick={() => handleButtonClick(0)}
-                        {...(activeButton === 0 && {
-                            bgGradient: "linear(to right, #00509d, #00509d)",
-                            transform: "scale(1.1)",
-                            color: "white",
-                            borderRadius: "5px",
                             width: "50px",
                             height: "50px",
-                            marginBottom: "0px",
+                            marginLeft: "25px",
+                            marginRight: "15px",
+                            bgGradient: "linear(to right, #00509d, #00509d)", 
+                            transform: "scale(1.1)", 
+                            color: "white",
+                            borderRadius: "5px",
+                            marginBottom: "15px",
+                            marginTop: "10px",
+                            marginLeft: "20px",
+                            marginRight: "25px",
+                        }}
+                        onClick={() => handleButtonClick(1)}
+                        {...(activeButton === 2 && {
+                            width: "50px",
+                            height: "50px",
+                            marginLeft: "25px",
+                            marginRight: "15px",
+                            bgGradient: "linear(to right, #00509d, #00509d)", 
+                            transform: "scale(1.1)", 
+                            color: "white",
+                            borderRadius: "5px",
+                            marginBottom: "15px",
                             marginTop: "10px",
                             marginLeft: "20px",
                             marginRight: "25px",
@@ -200,8 +199,8 @@ const NavBar = () => {
                         transform: "scale(1.1)", 
                         color: "white"
                     }}
-                onClick={() => handleButtonClick(1)}
-                {...(activeButton === 1 && {
+                onClick={() => handleButtonClick(2)}
+                {...(activeButton === 2 && {
                     width: "40px",
                     marginLeft: "25px",
                     marginRight: "15px",
@@ -235,6 +234,24 @@ const NavBar = () => {
                         transform: "scale(1.1)", 
                         color: "white"
                     }}
+                _focus={{
+                        width: "40px",
+                        marginLeft: "25px",
+                        marginRight: "15px",
+                        // backgroundColor: "00509d",
+                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        transform: "scale(1.1)", 
+                        color: "white"
+                }}
+                onClick={() => handleButtonClick(3)}
+                {...(activeButton === 3 && {
+                    width: "40px",
+                    marginLeft: "25px",
+                    marginRight: "15px",
+                    bgGradient: "linear(to right, #00509d, #00509d)",
+                    transform: "scale(1.1)",
+                    color: "white"
+                })}
 
             >
                 <Menu>
@@ -247,11 +264,6 @@ const NavBar = () => {
                 <BellIcon 
                     fontSize="2xl" 
                     m={1} 
-                    // marginLeft="30px"
-                    // color="#00509d"
-                    // marginBottom="10px"
-                    // marginTop="10px"
-                    
                 />
                 </MenuButton>
                 <MenuList pl={1}

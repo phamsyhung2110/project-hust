@@ -138,18 +138,6 @@ function SideDrawer() {
 
   return (
     <>
-      <Box
-        d="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        bg="#e9ecef"
-        w="match parent"
-        p="5px 10px 5px 10px"
-        marginLeft="90px"
-        marginBottom="100px"
-        // borderLeft="1px solid #e2e4e5"
-        
-      >
         <Tooltip 
           label="Search Users to chat" 
           hasArrow placement="bottom-end"
@@ -177,60 +165,6 @@ function SideDrawer() {
           </Button>
         </Tooltip>
 
-        {/* Draw the tile */}
-        <Text fontSize="2xl" fontFamily="Work sans">
-          Zalo
-        </Text>
-        <div>
-          <Menu>
-          {/* Create the ring icon for notification */}
-            <MenuButton p={1}>
-              <NotificationBadge
-                count={notification.length}
-                effect={Effect.SCALE}
-              />
-              <BellIcon fontSize="2xl" m={1} />
-            </MenuButton>
-            <MenuList pl={2}>
-              {!notification.length && "No New Messages"}
-              {notification.map((notif) => (
-                <MenuItem
-                  key={notif._id}
-                  onClick={() => {
-                    setSelectedChat(notif.chat);
-                    setNotification(notification.filter((n) => n !== notif));
-                  }}
-                >
-                  {notif.chat.isGroupChat
-                    ? `New Message in ${notif.chat.chatName}`
-                    : `New Message from ${getSender(user, notif.chat.users)}`}
-                </MenuItem>
-              ))}
-            </MenuList>
-          </Menu>
-          <Menu>
-            {/* Menu for avatar and view profile */}
-            <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
-              <Avatar
-                size="sm"
-                cursor="pointer"
-                name={user.name}
-                src={user.pic}
-              />
-            </MenuButton>
-
-            {/* Menu for My profile or Logout */}
-            <MenuList>
-              {/* When click to my profile, display the ProfileModal from miscellanous/ */}
-              <ProfileModal user={user}>
-                <MenuItem>My Profile</MenuItem>{" "}
-              </ProfileModal>
-              <MenuDivider />
-              <MenuItem onClick={logoutHandler}>Logout</MenuItem>
-            </MenuList>
-          </Menu>
-        </div>
-      </Box>
       
       {/* Hiện lên cừa sổ khi bấm vào search user */}
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>

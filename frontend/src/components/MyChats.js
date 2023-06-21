@@ -11,6 +11,8 @@ import { ChatState } from "../Context/ChatProvider";
 import { getSenderFull } from "../config/ChatLogics";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import testImg from './background.png';
+import SideDrawer from "./miscellaneous/SideDrawer";
+import { Tooltip } from "@chakra-ui/tooltip";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -87,17 +89,22 @@ const MyChats = ({ fetchAgain }) => {
         borderColor="#d9dce8"
       >
         My Chats
-
+        {user && <SideDrawer />}
         {/* Hiển thị cửa sổ tạo groupchat */}
         <GroupChatModal>
-          <Button
-            d="flex"
-            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-            rightIcon={<AddIcon />}
-            bgColor="white"
-          >
-            New Group Chat
-          </Button>
+            <Tooltip 
+            label="Create group chat1" 
+            hasArrow placement="bottom-end"
+            >
+            <Button
+              d="flex"
+              fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+              rightIcon={<AddIcon />}
+              bgColor="white"
+              w="50px"
+            >
+            </Button>
+          </Tooltip>
         </GroupChatModal>
       </Box>
       
