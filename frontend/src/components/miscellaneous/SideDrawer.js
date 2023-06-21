@@ -155,7 +155,7 @@ function SideDrawer() {
           hasArrow placement="bottom-end"
         >
           <Button 
-            variant="ghost" 
+            variant="ghost"
             onClick={onOpen} 
             bg="white"  
             width="300px"
@@ -244,10 +244,14 @@ function SideDrawer() {
                 placeholder="Search by name or email"
                 mr={2}
                 value={search}
+                onKeyDown={handleSearch}
                 onChange={(e) => setSearch(e.target.value)}
               />
               
-              <Button onClick={handleSearch}>Go</Button>
+              <Button 
+                onClick={handleSearch}
+                onKeyDown={handleSearch}
+              >Go</Button>
             </Box>
             {/* Nếu loading thì render ChatLoading, nếu không thì
             hiển thị danh sách user tìm thấy */}
