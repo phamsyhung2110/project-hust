@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/layout";
 import { IconButton, Spinner, useToast } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -40,10 +40,25 @@ const NavBar = () => {
     } = ChatState();
 
     const [activeButton, setActiveButton] = useState(null);
+    const menuButtonRef = useRef(null);
+
     const toast = useToast();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const history = useHistory();
 
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+          if (menuButtonRef.current && !menuButtonRef.current.contains(event.target)) {
+            setActiveButton(null); // Đặt lại trạng thái ban đầu khi click bên ngoài
+          }
+        };
+    
+        document.addEventListener("click", handleOutsideClick);
+    
+        return () => {
+          document.removeEventListener("click", handleOutsideClick);
+        };
+      }, []);
     const handleButtonClick = (buttonId) => {
         setActiveButton(buttonId);
     };
@@ -57,44 +72,100 @@ const NavBar = () => {
             fontSize={{ base: "20px", md: "20px" }}
             fontFamily="Work sans"
             justifyContent="space-between"
-            // display="flex"
             position="fixed"
-            // allignItems="center"
             top="0"
             left="0"
             bottom="0"
             width="90px"
             height="match-parent"
-            // backgroundColor="#583ea1"
             backgroundColor="#eaf4f4"
-            // bgGradient="linear(to bottom,white)"
             color="black"
-            overflow="hidden"
-            // borderRight="1px solid black"
         >
-            <div>
-            <Menu>
-                {/* Menu for avatar and view profile */}
-                <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
-                <Avatar
-                    size="sm"
-                    cursor="pointer"
-                    name={user.name}
-                    src={user.pic}
-                />
-                </MenuButton>
+                <Menu>
+                    {/* Menu for avatar and view profile */}
+                    <MenuButton
+                        bg="#eaf4f4" 
+                        rightIcon={<ChevronDownIcon />}
+                        color="#00509d"
+                        width="40px"
+                        marginBottom="10px"
+                        marginTop="10px"
+                        marginLeft="25px"
+                        transition="transform 0.5s"
+                        bg="transparent"
+                        border="none"
+                        _hover={{
+                            width: "50px",
+                            height: "50px",
+                            marginLeft: "25px",
+                            marginRight: "15px",
+                            // backgroundColor: "00509d",
+                            bgGradient: "linear(to right, #00509d, #00509d)", 
+                            transform: "scale(1.1)", 
+                            color: "white",
+                            borderRadius: "5px",
+                            marginBottom: "0px",
+                            marginTop: "10px",
+                            marginLeft: "20px",
+                            marginRight: "25px",
+                            
+                        }}
+                        _focus={{
+                                border: "none",
+                                boxShadow: "none",
+                                focusBorderColor: "transparent",
+                                focusRing: "0",
+                                transform: "scale(1.1)",
+                                color: "white",
+                                borderRadius: "5px",
+                                width: "50px",
+                                height: "50px",
+                                marginBottom: "0px",
+                                marginTop: "10px",
+                                marginLeft: "20px",
+                                marginRight: "25px",
+                                // marginTop: "10px",
+                                // marginLeft: "25px",
+                                // margin: "15px"
+                        }}
+                        ref={menuButtonRef}
+                        onClick={() => handleButtonClick(0)}
+                        {...(activeButton === 0 && {
+                            bgGradient: "linear(to right, #00509d, #00509d)",
+                            transform: "scale(1.1)",
+                            color: "white",
+                            borderRadius: "5px",
+                            width: "50px",
+                            height: "50px",
+                            marginBottom: "0px",
+                            marginTop: "10px",
+                            marginLeft: "20px",
+                            marginRight: "25px",
+                        })}
 
-                {/* Menu for My profile or Logout */}
-                <MenuList>
-                {/* When click to my profile, display the ProfileModal from miscellanous/ */}
-                <ProfileModal user={user}>
-                    <MenuItem>My Profile</MenuItem>{" "}
-                </ProfileModal>
-                <MenuDivider />
-                <MenuItem onClick={logoutHandler}>Logout</MenuItem>
-                </MenuList>
-            </Menu>
-        </div>
+                    >
+                    <Avatar
+                        cursor="pointer"
+                        name={user.name}
+                        src={user.pic}
+                        width="40px"
+                        height="40px"
+                    />
+                    </MenuButton>
+                    {/* Menu for My profile or Logout */}
+                    <MenuList>
+                    {/* When click to my profile, display the ProfileModal from miscellanous/ */}
+                    <ProfileModal user={user}>
+                        <MenuItem
+                            color="#00509d"
+                            
+                        >My Profile</MenuItem>{" "}
+                    </ProfileModal>
+                    <MenuDivider />
+                    <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                    </MenuList>
+                </Menu>
+
         {/* Các biểu tượng tùy chọn */}
             <Button 
                 variant="ghost" 
@@ -237,17 +308,15 @@ const NavBar = () => {
             >
                 <FontAwesomeIcon icon="fa-solid fa-house" />
             </Button>
+
+            {/* Button for rintone icon */}
             <Button 
                 variant="ghost" 
-                // onClick={onOpen} 
-                // bg="#a1a1c6" 
                 width="60px"
                 alignItems="center"
-                // paddingRight=""
                 marginBottom="10px"
                 marginTop="10px"
                 marginLeft="15px"
-                // marginRight="35px"
                 transition="transform 0.5s"
                 bg="transparent"
                 border="none"
@@ -268,9 +337,6 @@ const NavBar = () => {
                         focusRing: "0",
                         transform: "scale(1.1)",
                         color: "white",
-                        // marginTop: "10px",
-                        // marginLeft: "25px",
-                        // margin: "15px"
                     }}
             >
                 <Menu>
@@ -290,7 +356,9 @@ const NavBar = () => {
                     
                 />
                 </MenuButton>
-                <MenuList pl={1}>
+                <MenuList pl={1}
+                    color="black"
+                >
                 {!notification.length && "No New Messages"}
                 {notification.map((notif) => (
                     <MenuItem
