@@ -14,6 +14,9 @@ import animationData from "../animations/typing.json";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Button } from "@chakra-ui/button";
+
 // const ENDPOINT = process.env.REACT_APP_API_URL; 
 const ENDPOINT = "http://localhost:5000"
 
@@ -27,7 +30,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState(false);
   const [istyping, setIsTyping] = useState(false);
   const toast = useToast(); 
+  // const [activeButton, setActiveButton] = useState(null);
 
+  // const handleButtonClick = (buttonId) => {
+  //       setActiveButton(buttonId);
+  //   };
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -176,13 +183,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             paddingBottom="20px"
             borderBottom="1.5px solid"
             borderColor="#e2e4e5"
-            
-          >
+          > 
             <IconButton
               d={{ base: "flex", md: "none" }}
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
             />
+
             {messages &&
               (!selectedChat.isGroupChat ? (
                 <>

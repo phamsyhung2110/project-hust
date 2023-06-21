@@ -5,12 +5,51 @@ import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button } from "@chakra-ui/button";
+import {
+    Menu,
+    MenuButton,
+    MenuDivider,
+    MenuItem,
+    MenuList,
+} from "@chakra-ui/menu";
+import {
+    Drawer,
+    DrawerBody,
+    DrawerContent,
+    DrawerHeader,
+    DrawerOverlay,
+  } from "@chakra-ui/modal";
+import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { useHistory } from "react-router-dom";
+import { ChatState } from "../Context/ChatProvider";
+import { getSender } from "../config/ChatLogics";
+import { useDisclosure } from "@chakra-ui/hooks";
+import NotificationBadge from "react-notification-badge";
+import { Effect } from "react-notification-badge";
+import { Avatar } from "@chakra-ui/avatar";
+import ProfileModal from "./miscellaneous/ProfileModal";
 
 const NavBar = () => {
+    const {
+        setSelectedChat,
+        user,
+        notification,
+        setNotification,
+        chats,
+        setChats,
+    } = ChatState();
+
     const [activeButton, setActiveButton] = useState(null);
+    const toast = useToast();
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const history = useHistory();
 
     const handleButtonClick = (buttonId) => {
         setActiveButton(buttonId);
+    };
+    const logoutHandler = () => {
+        localStorage.removeItem("userInfo");
+        history.push("/");
     };
 
     return (
@@ -27,12 +66,61 @@ const NavBar = () => {
             width="90px"
             height="match-parent"
             // backgroundColor="#583ea1"
-            backgroundColor="white"
+            backgroundColor="#eaf4f4"
             // bgGradient="linear(to bottom,white)"
             color="black"
             overflow="hidden"
             // borderRight="1px solid black"
-        >   
+        >
+            <div>
+            <Menu>
+            {/* Create the ring icon for notification */}
+                <MenuButton p={1}>
+                <NotificationBadge
+                    count={notification.length}
+                    effect={Effect.SCALE}
+                />
+                <BellIcon fontSize="2xl" m={1} />
+                </MenuButton>
+                <MenuList pl={2}>
+                {!notification.length && "No New Messages"}
+                {notification.map((notif) => (
+                    <MenuItem
+                    key={notif._id}
+                    onClick={() => {
+                        setSelectedChat(notif.chat);
+                        setNotification(notification.filter((n) => n !== notif));
+                    }}
+                    >
+                    {notif.chat.isGroupChat
+                        ? `New Message in ${notif.chat.chatName}`
+                        : `New Message from ${getSender(user, notif.chat.users)}`}
+                    </MenuItem>
+                ))}
+                </MenuList>
+            </Menu>
+            <Menu>
+                {/* Menu for avatar and view profile */}
+                <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
+                <Avatar
+                    size="sm"
+                    cursor="pointer"
+                    name={user.name}
+                    src={user.pic}
+                />
+                </MenuButton>
+
+                {/* Menu for My profile or Logout */}
+                <MenuList>
+                {/* When click to my profile, display the ProfileModal from miscellanous/ */}
+                <ProfileModal user={user}>
+                    <MenuItem>My Profile</MenuItem>{" "}
+                </ProfileModal>
+                <MenuDivider />
+                <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                </MenuList>
+            </Menu>
+            </div>
         {/* Các biểu tượng tùy chọn */}
             <Button 
                 variant="ghost" 

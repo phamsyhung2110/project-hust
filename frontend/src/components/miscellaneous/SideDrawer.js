@@ -142,7 +142,7 @@ function SideDrawer() {
         d="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="white"
+        bg="#e9ecef"
         w="match parent"
         p="5px 10px 5px 10px"
         marginLeft="90px"
@@ -157,7 +157,7 @@ function SideDrawer() {
           <Button 
             variant="ghost" 
             onClick={onOpen} 
-            bg="#a1a1c6" 
+            bg="white"  
             width="300px"
             alignItems="center"
             // paddingRight=""
