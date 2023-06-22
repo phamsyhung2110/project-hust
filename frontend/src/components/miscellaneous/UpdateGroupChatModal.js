@@ -1,4 +1,4 @@
-import { ViewIcon } from "@chakra-ui/icons";
+import { ViewIcon,EditIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -21,6 +21,7 @@ import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -100,7 +101,6 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
     }
     setGroupChatName("");
   };
-
   const handleAddUser = async (user1) => {
     if (selectedChat.users.find((u) => u._id === user1._id)) {
       toast({
@@ -205,7 +205,16 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
   return (
     <>
-      <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
+      <IconButton 
+        d={{ base: "flex" }} 
+        onClick={onOpen}
+        h="18px"
+        icon={<EditIcon size="sm" />}
+        transition="transform 0.5s"
+        bg="transparent"
+        border="none"
+        marginTop="5px"
+      />
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />

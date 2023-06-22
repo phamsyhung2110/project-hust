@@ -181,10 +181,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             d="block"
             justifyContent={{ base: "space-between" }}
             alignItems="center"
-            padding="10px 10px 10px 10px"
+            padding="20px 20px 20px 20px"
             borderBottom="1.5px solid"
             // bg="black"
             borderColor="#e2e4e5"
+
           >
           {messages &&
               (!selectedChat.isGroupChat ? (
@@ -204,12 +205,28 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 </>
               ) : (
                 <>
+                  <Avatar
+                    mt="15px 15px 15px 15px"
+                    w="60px"
+                    h="60px"
+                    cursor="pointer"
+                    border="3px solid #3a86ff"
+                    marginRight="10px"
+                  >
+                  <Box
+                    w="3px"
+                    marginTop="40px"
+                    marginLeft="90px"
+                  >
+                    <UpdateGroupChatModal
+                      fetchMessages={fetchMessages}
+                      fetchAgain={fetchAgain}
+                      setFetchAgain={setFetchAgain}
+                    />
+                  </Box>
+                  </Avatar>
                   {selectedChat.chatName.toUpperCase()}
-                  <UpdateGroupChatModal
-                    fetchMessages={fetchMessages}
-                    fetchAgain={fetchAgain}
-                    setFetchAgain={setFetchAgain}
-                  />
+                  
                 </>
               ))}
           </Box>
