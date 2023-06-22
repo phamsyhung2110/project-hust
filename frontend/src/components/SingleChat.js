@@ -16,6 +16,7 @@ import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button } from "@chakra-ui/button";
+import { Avatar } from "@chakra-ui/avatar";
 
 // const ENDPOINT = process.env.REACT_APP_API_URL; 
 const ENDPOINT = "http://localhost:5000"
@@ -171,6 +172,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     <>
       {selectedChat ? (
         <>
+          
           <Text
             fontSize={{ base: "28px", md: "30px" }}
             pb={3}
@@ -183,17 +185,27 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             paddingBottom="20px"
             borderBottom="1.5px solid"
             borderColor="#e2e4e5"
-          > 
-            <IconButton
+          >
+            {/* <IconButton
               d={{ base: "flex", md: "none" }}
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
-            />
+            /> */}
 
             {messages &&
               (!selectedChat.isGroupChat ? (
                 <>
-                  {getSender(user, selectedChat.users)}
+                  {/* Avatar ở trên, hiển thị tên và avt người đang nhắn tin */}
+                  <Avatar
+                    mt="20px"
+                    w="60px"
+                    h="60px"
+                    cursor="pointer"
+                    src={getSenderFull(user, selectedChat.users).pic}
+                    border="3px solid #3a86ff"
+                    
+                  />
+                  {getSender(user, selectedChat.users)} 
                   <ProfileModal
                     user={getSenderFull(user, selectedChat.users)}
                   />

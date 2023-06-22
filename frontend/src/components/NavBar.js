@@ -148,6 +148,7 @@ const NavBar = () => {
                         src={user.pic}
                         width="40px"
                         height="40px"
+                        border="3px solid #3a86ff"
                     />
                     </MenuButton>
                     {/* Menu for My profile or Logout */}

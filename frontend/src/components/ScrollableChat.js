@@ -22,8 +22,9 @@ const ScrollableChat = ({ messages }) => {
               <Tooltip label={m.sender.name} placement="bottom-start" hasArrow>
                 <Avatar
                   mt="7px"
-                  mr={1}
-                  size="sm"
+                  mr={1} //Avatar ở tin nhắn, khoảng cách
+                  w="29px"
+                  h="29px"
                   cursor="pointer"
                   name={m.sender.name}
                   src={m.sender.pic}
@@ -31,6 +32,7 @@ const ScrollableChat = ({ messages }) => {
               </Tooltip>
             )}
             <span
+              //Style ô chứa tin nhắn
               style={{
                 backgroundColor: `${
                   m.sender._id === user._id ? "#7a00ff" : "#d9dce8"
@@ -41,10 +43,10 @@ const ScrollableChat = ({ messages }) => {
                 marginLeft: isSameSenderMargin(messages, m, i, user._id),
                 marginTop: isSameUser(messages, m, i, user._id) ? 3 : 10,
                 marginBottom: isSameUser(messages, m, i, user._id) ? 3 : 50,
-                borderRadius: "10px",
+                borderRadius: "10px", 
                 padding: "5px 15px",
                 maxWidth: "40%",
-                wordWrap: "break-word"
+                wordWrap: "break-word",
               }}
             >
               {m.content}
