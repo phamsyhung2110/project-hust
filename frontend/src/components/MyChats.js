@@ -64,13 +64,11 @@ const MyChats = ({ fetchAgain }) => {
       // top="50.1"
       left="0"
       overflow="hidden"
-      w={{ base: "100%", md: "31%" }}
+      w="422px"
       h="100%"
       // borderWidth="0.1px"
       // borderColor="#c6c9cb"
       marginLeft={90}
-      marginRight={0}
-      paddingTop={0}
     >
       {/* Gọi thanh NavBar */}
       <NavBar />
@@ -91,7 +89,7 @@ const MyChats = ({ fetchAgain }) => {
         borderBottom="1.5px solid"
         borderColor="#d9dce8"
       >
-        My Chats
+        Chats
         {user && <SideDrawer />}
         {/* Hiển thị cửa sổ tạo groupchat */}
         <GroupChatModal>
@@ -102,9 +100,11 @@ const MyChats = ({ fetchAgain }) => {
             <Button
               d="flex"
               fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-              rightIcon={<AddIcon />}
+              rightIcon={<AddIcon 
+                marginRight="6px"
+              />}
               bgColor="white"
-              w="50px"
+              w="30px"
             >
             </Button>
           </Tooltip>

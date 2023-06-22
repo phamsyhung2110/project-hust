@@ -172,43 +172,35 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     <>
       {selectedChat ? (
         <>
-          
-          <Text
+          <Box 
             fontSize={{ base: "28px", md: "30px" }}
             pb={3}
             px={2}
             w="100%"
             fontFamily="Work sans"
-            d="flex"
+            d="block"
             justifyContent={{ base: "space-between" }}
             alignItems="center"
-            paddingBottom="20px"
+            padding="10px 10px 10px 10px"
             borderBottom="1.5px solid"
+            // bg="black"
             borderColor="#e2e4e5"
           >
-            {/* <IconButton
-              d={{ base: "flex", md: "none" }}
-              icon={<ArrowBackIcon />}
-              onClick={() => setSelectedChat("")}
-            /> */}
-
-            {messages &&
+          {messages &&
               (!selectedChat.isGroupChat ? (
                 <>
                   {/* Avatar ở trên, hiển thị tên và avt người đang nhắn tin */}
                   <Avatar
-                    mt="20px"
+                    mt="15px 15px 15px 15px"
                     w="60px"
                     h="60px"
                     cursor="pointer"
                     src={getSenderFull(user, selectedChat.users).pic}
                     border="3px solid #3a86ff"
-                    
-                  />
-                  {getSender(user, selectedChat.users)} 
-                  <ProfileModal
-                    user={getSenderFull(user, selectedChat.users)}
-                  />
+                    marginRight="10px"
+                  >
+                  </Avatar>
+                    {getSender(user, selectedChat.users)} 
                 </>
               ) : (
                 <>
@@ -220,7 +212,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   />
                 </>
               ))}
-          </Text>
+          </Box>
+
+            
           <Box
             d="flex"
             flexDir="column"

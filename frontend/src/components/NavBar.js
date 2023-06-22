@@ -157,7 +157,6 @@ const NavBar = () => {
                     <ProfileModal user={user}>
                         <MenuItem
                             color="#00509d"
-                            
                         >My Profile</MenuItem>{" "}
                     </ProfileModal>
                     <MenuDivider />
