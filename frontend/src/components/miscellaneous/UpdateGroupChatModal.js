@@ -1,4 +1,4 @@
-import { ViewIcon,EditIcon } from "@chakra-ui/icons";
+import { ViewIcon,EditIcon, PhoneIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -208,13 +208,14 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
       <IconButton 
         d={{ base: "flex" }} 
         onClick={onOpen}
-        h="18px"
+        h="22px"
         icon={<EditIcon size="sm" />}
         transition="transform 0.5s"
         bg="transparent"
         border="none"
-        marginTop="5px"
+        // marginTop="2px"
       />
+      
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />

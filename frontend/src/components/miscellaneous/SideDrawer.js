@@ -146,7 +146,7 @@ function SideDrawer() {
             variant="ghost"
             onClick={onOpen} 
             bg="white"  
-            width="300px"
+            width="250px"
             alignItems="center"
             // paddingRight=""
             marginLeft={0}

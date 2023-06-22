@@ -19,7 +19,6 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
       right="0vh"
       borderWidth="0.1px"
       borderColor="#e2e4e5"
-
     >
       {/* <NavBar /> */}
       <SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />

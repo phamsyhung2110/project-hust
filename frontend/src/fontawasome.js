@@ -7,6 +7,14 @@ import {
     faMagnifyingGlass,
     faHouse,
     faSearch,
+    faGear,
+    faAddressBook,
+    faBell,
+    faVideo,
+    faPhone,
+    faUserPlus,
+    faUserGroup,
+    faMessage,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -15,6 +23,14 @@ library.add(
     faCoffee, 
     faSearch, 
     faMagnifyingGlass,
-    faHouse
+    faHouse,
+    faGear,
+    faAddressBook,
+    faBell,
+    faVideo,
+    faPhone,
+    faUserPlus,
+    faUserGroup,
+    faMessage,
     )
 

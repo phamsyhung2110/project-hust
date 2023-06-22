@@ -14,6 +14,7 @@ import testImg from './background.png';
 import SideDrawer from "./miscellaneous/SideDrawer";
 import { Tooltip } from "@chakra-ui/tooltip";
 import NavBar from "./NavBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -64,7 +65,7 @@ const MyChats = ({ fetchAgain }) => {
       // top="50.1"
       left="0"
       overflow="hidden"
-      w="422px"
+      w={{ base: "100%", md: "26%" }}
       h="100%"
       // borderWidth="0.1px"
       // borderColor="#c6c9cb"
@@ -89,7 +90,6 @@ const MyChats = ({ fetchAgain }) => {
         borderBottom="1.5px solid"
         borderColor="#d9dce8"
       >
-        Chats
         {user && <SideDrawer />}
         {/* Hiển thị cửa sổ tạo groupchat */}
         <GroupChatModal>
@@ -100,12 +100,10 @@ const MyChats = ({ fetchAgain }) => {
             <Button
               d="flex"
               fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-              rightIcon={<AddIcon 
-                marginRight="6px"
-              />}
               bgColor="white"
               w="30px"
             >
+              <FontAwesomeIcon icon="fa-solid fa-user-group" size="lg" />
             </Button>
           </Tooltip>
         </GroupChatModal>

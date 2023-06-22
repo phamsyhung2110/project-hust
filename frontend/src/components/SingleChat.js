@@ -17,6 +17,7 @@ import { ChatState } from "../Context/ChatProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button } from "@chakra-ui/button";
 import { Avatar } from "@chakra-ui/avatar";
+import { PhoneIcon } from "@chakra-ui/icons";
 
 // const ENDPOINT = process.env.REACT_APP_API_URL; 
 const ENDPOINT = "http://localhost:5000"
@@ -173,12 +174,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       {selectedChat ? (
         <>
           <Box 
-            fontSize={{ base: "28px", md: "30px" }}
+            fontSize={{ base: "20px", md: "25px" }}
+            fontWeight="bold" 
             pb={3}
             px={2}
             w="100%"
             fontFamily="Work sans"
-            d="block"
+            d="flex"
             justifyContent={{ base: "space-between" }}
             alignItems="center"
             padding="20px 20px 20px 20px"
@@ -205,17 +207,26 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 </>
               ) : (
                 <>
-                  <Avatar
-                    mt="15px 15px 15px 15px"
+                  <Box
+                    w="60px"
+                    h="60px"
+                    bg="black"
+                    d="flex" alignItems="center"
+                  >
+                    <Avatar
+                    // mt="15px 15px 15px 15px"
                     w="60px"
                     h="60px"
                     cursor="pointer"
                     border="3px solid #3a86ff"
-                    marginRight="10px"
+                    marginRight="100px"
+                    marginBottom="0px"
+                    // marginTop="20px"
                   >
+                  </Avatar>
+                  </Box>
+                  {selectedChat.chatName.toUpperCase()}
                   <Box
-                    w="3px"
-                    marginTop="40px"
                     marginLeft="90px"
                   >
                     <UpdateGroupChatModal
@@ -224,8 +235,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                       setFetchAgain={setFetchAgain}
                     />
                   </Box>
-                  </Avatar>
-                  {selectedChat.chatName.toUpperCase()}
                   
                 </>
               ))}
