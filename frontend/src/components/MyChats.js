@@ -136,9 +136,6 @@ const MyChats = ({ fetchAgain }) => {
                 key={chat._id}
               >
                 <Text>
-                  {/* Hiển thị tên user đang chat trong đoạn chat, 
-                  nếu đó là groupchat thì hiển thị tên group
-                   */}
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
@@ -146,9 +143,14 @@ const MyChats = ({ fetchAgain }) => {
                 {chat.latestMessage && (
                   <Text fontSize="xs">
                     <b>{chat.latestMessage.sender.name} : </b>
-                    {chat.latestMessage.content.length > 50
-                      ? chat.latestMessage.content.substring(0, 51) + "..."
+                    {chat.latestMessage.content.length > 30
+                      ? chat.latestMessage.content.substring(0, 31) + "..."
                       : chat.latestMessage.content}
+                    <b style={{
+                      marginLeft: 10,
+                    }}>
+                    {new Date(chat.latestMessage.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </b>
                   </Text>
                 )}
               </Box>
