@@ -54,4 +54,34 @@ const sendMessage = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { allMessages, sendMessage };
+const markMessageAsSeen = asyncHandler(async (req, res) => {
+  const { messageId } = req.params;
+
+  try {
+    const message = await Message.findById(messageId);
+
+    if (!message) {
+      res.status(404);
+      throw new Error("Message not found");
+    }
+
+    if (!message.seenBy.includes(req.user._id)) {
+      message.seenBy.push(req.user._id); // Thêm người dùng vào danh sách seenBy
+      await message.save(); // Lưu lại tin nhắn đã được đánh dấu
+
+      // Gửi thông báo đánh dấu đã xem đến người gửi hoặc thông báo tương tự
+      // tùy thuộc vào yêu cầu của bạn
+
+      // Gửi thông báo đánh dấu đã xem đến người gửi
+      // const sender = await User.findById(message.sender);
+      // sender.sendNotification('message_seen', { messageId });
+    }
+
+    res.json({ message: "Message marked as seen" });
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
+});
+
+module.exports = { allMessages, sendMessage, markMessageAsSeen };

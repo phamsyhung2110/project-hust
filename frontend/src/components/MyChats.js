@@ -149,6 +149,10 @@ const MyChats = ({ fetchAgain }) => {
                     <b style={{
                       marginLeft: 10,
                     }}>
+                    {/* {chat.latestMessage.seenBy.length > 0 && (
+                      <span>Seen by User</span>
+                    )} */}
+                    <span>{chat.latestMessage.seenBy[0]}</span>
                     {new Date(chat.latestMessage.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </b>
                   </Text>

@@ -31,6 +31,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [socketConnected, setSocketConnected] = useState(false);
   const [typing, setTyping] = useState(false);
   const [istyping, setIsTyping] = useState(false);
+  const [seen, setSeen] = useState(false);
   const toast = useToast(); 
   // const [activeButton, setActiveButton] = useState(null);
 
@@ -45,7 +46,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  const { selectedChat, setSelectedChat, user, notification, setNotification } =
+  const { selectedChat, setSelectedChat, user, notification, setNotification, chats } =
     ChatState();
 
   const fetchMessages = async () => {
@@ -147,6 +148,45 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     });
   });
+
+  const markMessageAsSeen = async () => {
+    if (selectedChat && messages.length > 0) {
+      const latestMessage = messages[messages.length - 1];
+      if (latestMessage && latestMessage.sender._id !== user._id && !latestMessage.seenBy.includes(user._id)) {
+        try {
+          await axios.put(`/messages/${latestMessage._id}/seen`);
+          setMessages((prevMessages) => {
+            const updatedMessages = [...prevMessages];
+            const updatedMessageIndex = updatedMessages.findIndex((message) => message._id === latestMessage._id);
+            if (updatedMessageIndex !== -1) {
+              updatedMessages[updatedMessageIndex].seenBy.push(user._id);
+            }
+            setSeen(true);
+            return updatedMessages;
+            
+          });
+        } catch (error) {
+          console.error("Error marking message as seen:", error);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    markMessageAsSeen();
+  }, [selectedChat, messages]);
+
+  // const checkSeen = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `/api/message/${selectedChat._id}`,
+  //       config
+  //     );
+  //     if data.
+  //   } catch (error) {
+  //     console.error("Error marking message as seen:", error);
+  //   }
+  // }
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
