@@ -65,7 +65,7 @@ const addFriend = asyncHandler(async (req, res) => {
   
 const allFriends = asyncHandler(async (req, res) => {
     //Tìm user đang đăng nhập hiện tại và thông tin bạn bè trong danh sách
-    const currentUser = await User.findById(req.params.userId).populate("friends", "-password");;
+    const currentUser = await User.findById(req.params.userId).populate("friends", "-password");
   
     if (!currentUser) {
       res.status(404)

@@ -5,20 +5,20 @@ import MyChats from "../components/MyChats";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
 import { ChatState } from "../Context/ChatProvider";
 import NavBar, { ButtonState } from "../components/NavBar";
-import { ActiveButtonContext } from "../components/NavBar";
+import MyFriends from "../components/MyFriends";
 
 
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-  const activeButton = ButtonState()
+  // const activeButton = ButtonState()
+  const activeButton = 3;
 
   console.log("Values is: ", activeButton);
 
   return (
-    <ActiveButtonContext.Consumer>
-      {activeButton => (
       <div style={{ width: "100%" }}>
+
         {user && <NavBar />}
         <Box 
           d="flex"
@@ -29,7 +29,8 @@ const Chatpage = () => {
           top="0px"
           bottom="0vh"
           >
-            {activeButton === 2 ? (
+            {/* {user && <MyFriends />} */}
+            {activeButton === 3 ? (
             <Box
                 d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
                 flexDir="column"
@@ -42,7 +43,8 @@ const Chatpage = () => {
                 h="100%"
                 marginLeft={90}
                 >
-                {user && <MyChats fetchAgain={fetchAgain} />}
+                {/* {user && <MyChats fetchAgain={fetchAgain} />} */}
+                {user && <MyFriends />}
             </Box>
         ) : (
             <Box
@@ -66,8 +68,6 @@ const Chatpage = () => {
           )}
         </Box>
     </div>
-    )}
-    </ActiveButtonContext.Consumer>
   );
 };
 
