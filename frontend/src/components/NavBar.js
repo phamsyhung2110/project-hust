@@ -73,7 +73,7 @@ const NavBar = () => {
     };
 
     return (
-        <ActiveButtonContext.Provider value={activeButton}>
+        <ActiveButtonContext.Provider value={{activeButton}}>
         <Box
             d={{ base: "block", md: "block" }}
             fontSize={{ base: "20px", md: "20px" }}
@@ -210,37 +210,8 @@ const NavBar = () => {
                     transform: "scale(1.1)",
                     color: "white"
                 })}
-            >
-                <Menu>
-            {/* Create the ring icon for notification */}
-                <MenuButton p={1}>
-                <NotificationBadge
-                    count={notification.length}
-                    effect={Effect.SCALE}
-                />
-                <FontAwesomeIcon icon="fa-solid fa-message" size="xl" />
-                </MenuButton>
-                <MenuList pl={1}
-                    color="black"
-                >
-                {!notification.length && "No New Messages"}
-                {notification.map((notif) => (
-                    <MenuItem
-                    key={notif._id}
-                    onClick={() => {
-                        setSelectedChat(notif.chat);
-                        setNotification(notification.filter((n) => n !== notif));
-                    }}
-                    >
-                    {notif.chat.isGroupChat
-                        ? `New Message in ${notif.chat.chatName}`
-                        : `New Message from ${getSender(user, notif.chat.users)}`}
-                    </MenuItem>
-                ))}
-                </MenuList>
-                
-                </Menu>
-                
+            >   
+                <FontAwesomeIcon icon="fa-solid fa-message" size="xl" />                
             </Button>
             <Button 
                 // ref={menuButtonRef}

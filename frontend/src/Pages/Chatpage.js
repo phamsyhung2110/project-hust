@@ -5,16 +5,19 @@ import MyChats from "../components/MyChats";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
 import { ChatState } from "../Context/ChatProvider";
 import NavBar, { ButtonState } from "../components/NavBar";
+import { ActiveButtonContext } from "../components/NavBar";
 
 
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
   const activeButton = ButtonState()
-  
+
   console.log("Values is: ", activeButton);
 
   return (
+    <ActiveButtonContext.Consumer>
+      {activeButton => (
       <div style={{ width: "100%" }}>
         {user && <NavBar />}
         <Box 
@@ -63,6 +66,8 @@ const Chatpage = () => {
           )}
         </Box>
     </div>
+    )}
+    </ActiveButtonContext.Consumer>
   );
 };
 

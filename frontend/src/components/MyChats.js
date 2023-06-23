@@ -13,7 +13,6 @@ import ProfileModal from "./miscellaneous/ProfileModal";
 import testImg from './background.png';
 import SideDrawer from "./miscellaneous/SideDrawer";
 import { Tooltip } from "@chakra-ui/tooltip";
-import NavBar from "./NavBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar } from "@chakra-ui/avatar";
 
