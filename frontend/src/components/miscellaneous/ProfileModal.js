@@ -73,6 +73,8 @@ const ProfileModal = ({ user, loggedUser, children }) => {
               null // Nếu user._id == loggedUser._id, không hiển thị gì cả
             ) : user.friends.includes(loggedUser._id) ? (
               <Text>Friend</Text>
+            ) : user.friendRequests.includes(loggedUser._id) ? (
+              <Button marginRight={10} >Requested</Button>
             ) : (
               <Button 
                 marginRight={10}
