@@ -15,6 +15,7 @@ import SideDrawer from "./miscellaneous/SideDrawer";
 import { Tooltip } from "@chakra-ui/tooltip";
 import NavBar from "./NavBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Avatar } from "@chakra-ui/avatar";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -135,13 +136,27 @@ const MyChats = ({ fetchAgain }) => {
                 borderRadius="lg"
                 key={chat._id}
               >
-                <Text>
+                
+                <Text
+                >
+                  <Avatar
+                    mt="15px 15px 15px 15px"
+                    w="40px"
+                    h="40px"
+                    cursor="pointer"
+                    src={getSenderFull(loggedUser, chat.users).pic}
+                    border="2px solid #3a86ff"
+                    marginRight="10px"
+                />
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
                 </Text>
                 {chat.latestMessage && (
-                  <Text fontSize="xs">
+                  <Text fontSize="xs"
+                    marginLeft="50px"
+                    marginTop="0px"
+                  >
                     <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 30
                       ? chat.latestMessage.content.substring(0, 31) + "..."

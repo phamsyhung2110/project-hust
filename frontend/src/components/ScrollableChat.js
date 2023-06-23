@@ -51,11 +51,6 @@ const ScrollableChat = ({ messages }) => {
               }}
             >
               {m.content}
-              {/* {m.sender._id === user._id && m.seenBy.includes(user._id) && (
-                <span style={{ marginLeft: "5px", fontSize: "12px" }}>
-                  (Seen)
-                </span> */}
-              )}
             </span>
           </div>
         ))}

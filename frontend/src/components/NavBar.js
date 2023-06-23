@@ -154,7 +154,7 @@ const NavBar = () => {
                     {/* Menu for My profile or Logout */}
                     <MenuList>
                     {/* When click to my profile, display the ProfileModal from miscellanous/ */}
-                    <ProfileModal user={user}>
+                    <ProfileModal user={user} loggedUser={user}>
                         <MenuItem
                             color="#00509d"
                         >My Profile</MenuItem>{" "}

@@ -19,20 +19,21 @@ import { useToast } from "@chakra-ui/toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // User model template from chakra ui
-const ProfileModal = ({ user, children }) => {
+const ProfileModal = ({ user, loggedUser, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
-  const handleAddFriends = async (user) => {
+  const handleAddFriends = async (loggedUser) => {
     try {
       const config = {
         headers: {
           "Content-type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${loggedUser.token}`,
         },
       };
 
       const { data } = await axios.post(
         "/api/user/addfriend",
+        //friendID
         config
       );
   } catch (error) {
@@ -62,10 +63,17 @@ const ProfileModal = ({ user, children }) => {
             // d="flex"
             justifyContent="center"
           >
-            <Button 
-              marginRight={10}
-              onClick={() => handleAddFriends(user)}
-            >Add Friend</Button>
+            {user._id === loggedUser._id ? (
+              null // Nếu user._id == loggedUser._id, không hiển thị gì cả
+            ) : (
+              <Button 
+                marginRight={10}
+                onClick={() => handleAddFriends(user)}
+              >
+                <FontAwesomeIcon icon="fa-solid fa-user-plus" />
+              </Button>
+            )}
+
             {user.name}
           </ModalHeader>
           <ModalCloseButton />

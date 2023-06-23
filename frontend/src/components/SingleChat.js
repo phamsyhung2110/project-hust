@@ -245,7 +245,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   </Avatar>
                     {getSender(user, selectedChat.users)}
                     <ProfileModal
-                    user={getSenderFull(user, selectedChat.users)} 
+                      user={getSenderFull(user, selectedChat.users)}
+                      loggedUser={user}
                     >
                     </ProfileModal>
                 </>
@@ -262,7 +263,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     w="60px"
                     h="60px"
                     cursor="pointer"
-                    border="3px solid #3a86ff"
+                    border="1px solid #3a86ff"
                     marginRight="100px"
                     marginBottom="0px"
                     // marginTop="20px"
