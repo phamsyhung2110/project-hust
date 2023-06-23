@@ -62,14 +62,10 @@ const MyChats = ({ fetchAgain }) => {
       alignItems="center"
       p={0}
       bg="white"
-      // position="fixed"
-      // top="50.1"
       left="0"
       overflow="hidden"
       w={{ base: "100%", md: "26%" }}
       h="100%"
-      // borderWidth="0.1px"
-      // borderColor="#c6c9cb"
       marginLeft={90}
     >
       {/* Gọi thanh NavBar */}
@@ -140,7 +136,8 @@ const MyChats = ({ fetchAgain }) => {
                 <Text
                 >
                   <Avatar
-                    mt="15px 15px 15px 15px"
+                    position="relative"
+                    // mt="15px 15px 15px 15px"
                     w="40px"
                     h="40px"
                     cursor="pointer"

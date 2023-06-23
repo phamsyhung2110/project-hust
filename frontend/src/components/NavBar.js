@@ -81,9 +81,11 @@ const NavBar = () => {
             height="match-parent"
             backgroundColor="#eaf4f4"
             color="black"
+            zIndex={999}
             // onClick={handleOutsideClick}
         >
-                <Menu>
+                <Menu 
+                >
                     {/* Menu for avatar and view profile */}
                     <MenuButton
                         bg="#eaf4f4" 
