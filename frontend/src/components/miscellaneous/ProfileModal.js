@@ -65,6 +65,8 @@ const ProfileModal = ({ user, loggedUser, children }) => {
           >
             {user._id === loggedUser._id ? (
               null // Nếu user._id == loggedUser._id, không hiển thị gì cả
+            ) : user.friends.includes(loggedUser._id) ? (
+              <Text>Friend</Text>
             ) : (
               <Button 
                 marginRight={10}
@@ -73,7 +75,6 @@ const ProfileModal = ({ user, loggedUser, children }) => {
                 <FontAwesomeIcon icon="fa-solid fa-user-plus" />
               </Button>
             )}
-
             {user.name}
           </ModalHeader>
           <ModalCloseButton />
@@ -97,6 +98,14 @@ const ProfileModal = ({ user, loggedUser, children }) => {
             </Text>
           </ModalBody>
           <ModalFooter>
+            {user._id === loggedUser._id ? (
+              null // Nếu user._id == loggedUser._id, không hiển thị gì cả
+            ) : (
+              <>
+                <Button bg="red.300" marginLeft= "10px" marginRight="10px">Block</Button>
+                <Button bg="red.100" marginRight= "10px">Unfriend</Button>
+              </>
+            )}
             <Button onClick={onClose}>Close</Button>
           </ModalFooter>
         </ModalContent>
