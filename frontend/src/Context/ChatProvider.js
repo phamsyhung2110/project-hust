@@ -10,7 +10,7 @@ const ChatProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [notification, setNotification] = useState([]);
   const [chats, setChats] = useState();
-
+  const [activeButton, setActiveButton] = useState(2);
   const history = useHistory();
 
   useEffect(() => {
@@ -20,6 +20,7 @@ const ChatProvider = ({ children }) => {
     if (!userInfo) history.push("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history]);
+  
 
   return (
     <ChatContext.Provider
@@ -32,6 +33,8 @@ const ChatProvider = ({ children }) => {
         setNotification,
         chats,
         setChats,
+        activeButton, 
+        setActiveButton
       }}
     >
       {children}

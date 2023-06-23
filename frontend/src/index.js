@@ -12,9 +12,7 @@ ReactDOM.render(
   <ChakraProvider>
     <BrowserRouter>
       <ChatProvider>
-        <ButtonProvider>
         <App />
-        </ButtonProvider>
       </ChatProvider>
     </BrowserRouter>
   </ChakraProvider>,

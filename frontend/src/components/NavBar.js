@@ -21,7 +21,7 @@ import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
 import { Avatar } from "@chakra-ui/avatar";
 import ProfileModal from "./miscellaneous/ProfileModal";
-import { useButtonState } from "../Context/ButtonProvider";
+
 
 const NavBar = () => {
     const {
@@ -32,9 +32,9 @@ const NavBar = () => {
         setNotification,
         chats,
         setChats,
+        activeButton, setActiveButton
     } = ChatState();
 
-    const {activeButton, setActiveButton} = useButtonState();
     const menuButtonRef = useRef(null);
 
     const toast = useToast();

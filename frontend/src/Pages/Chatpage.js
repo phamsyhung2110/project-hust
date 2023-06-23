@@ -6,13 +6,12 @@ import SideDrawer from "../components/miscellaneous/SideDrawer";
 import { ChatState } from "../Context/ChatProvider";
 import NavBar from "../components/NavBar";
 import MyFriends from "../components/MyFriends";
-import ButtonProvider, { useButtonState } from "../Context/ButtonProvider";
+
 
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
-  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
+  const { selectedChat, setSelectedChat, user, chats, setChats, activeButton } = ChatState();
   // const activeButton = ButtonState()
-  const {activeButton} = useButtonState();
 
   console.log("Values is: ", activeButton);
 
