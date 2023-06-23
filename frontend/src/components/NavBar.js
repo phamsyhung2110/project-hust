@@ -22,8 +22,6 @@ import { Effect } from "react-notification-badge";
 import { Avatar } from "@chakra-ui/avatar";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import { useButtonState } from "../Context/ButtonProvider";
-import { ActiveButtonContext } from "../Context/ButtonProvider";
-import ButtonProvider from "../Context/ButtonProvider";
 
 const NavBar = () => {
     const {

@@ -4,9 +4,9 @@ import Chatbox from "../components/Chatbox";
 import MyChats from "../components/MyChats";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
 import { ChatState } from "../Context/ChatProvider";
-import NavBar, { ButtonState } from "../components/NavBar";
+import NavBar from "../components/NavBar";
 import MyFriends from "../components/MyFriends";
-import ButtonProvider, {useButtonState} from "../Context/ButtonProvider";
+import ButtonProvider, { useButtonState } from "../Context/ButtonProvider";
 
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
@@ -18,10 +18,7 @@ const Chatpage = () => {
 
   return (
       <div style={{ width: "100%" }}>
-        <ButtonProvider>
           {user && <NavBar />}
-        </ButtonProvider>
-        
         <Box 
           d="flex"
           position="fixed"
@@ -32,7 +29,7 @@ const Chatpage = () => {
           bottom="0vh"
           >
             {/* {user && <MyFriends />} */}
-            {activeButton === 3 ? (
+            {activeButton === 2 ? (
             <Box
                 d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
                 flexDir="column"
@@ -45,8 +42,8 @@ const Chatpage = () => {
                 h="100%"
                 marginLeft={90}
                 >
-                {/* {user && <MyChats fetchAgain={fetchAgain} />} */}
-                {user && <MyFriends />}
+                {user && <MyChats fetchAgain={fetchAgain} />}
+                {/* {user && <MyFriends />} */}
             </Box>
         ) : (
             <Box
