@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/layout";
 import { IconButton, Spinner, useToast } from "@chakra-ui/react";
-import { useEffect, useState, useRef } from "react";
+import { React, useEffect, useState, useRef, createContext, useContext } from "react";
 import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -31,8 +31,11 @@ import ProfileModal from "./miscellaneous/ProfileModal";
 import SideDrawer from "./miscellaneous/SideDrawer";
 import MyChats from "./MyChats";
 
+export const ActiveButtonContext = createContext();
+
 const NavBar = () => {
     const {
+        selectedChat,
         setSelectedChat,
         user,
         notification,
@@ -51,6 +54,7 @@ const NavBar = () => {
     
     const handleButtonClick = (buttonId) => {
         setActiveButton(buttonId);
+        console.log("active: ", buttonId);
     };
     useEffect(() => {
         const handleOutsideClick = () => {
@@ -69,6 +73,7 @@ const NavBar = () => {
     };
 
     return (
+        <ActiveButtonContext.Provider value={activeButton}>
         <Box
             d={{ base: "block", md: "block" }}
             fontSize={{ base: "20px", md: "20px" }}
@@ -84,65 +89,64 @@ const NavBar = () => {
             color="black"
             zIndex={999}
             // onClick={handleOutsideClick}
-        >
-                <Menu 
-                >
-                    {/* Menu for avatar and view profile */}
-                    <MenuButton
-                        bg="#eaf4f4" 
-                        // rightIcon={<ChevronDownIcon />}
-                        color="#00509d"
-                        width="40px"
-                        marginTop="10px"
-                        marginLeft="25px"
-                        marginRight="25px"
-                        marginBottom="25px"
-                        transition="transform 0.5s"
-                        bg="transparent"
-                        border="none"
-                        _hover={{
-                            width: "50px",
-                            height: "50px",
-                            marginLeft: "25px",
-                            marginRight: "15px",
-                            bgGradient: "linear(to right, #00509d, #00509d)", 
-                            transform: "scale(1.1)", 
-                            color: "white",
-                            borderRadius: "5px",
-                            marginBottom: "15px",
-                            marginTop: "10px",
-                            marginLeft: "20px",
-                            marginRight: "25px",
-                        }}
-                        _focus={{
-                            width: "50px",
-                            height: "50px",
-                            marginLeft: "25px",
-                            marginRight: "15px",
-                            bgGradient: "linear(to right, #00509d, #00509d)", 
-                            transform: "scale(1.1)", 
-                            color: "white",
-                            borderRadius: "5px",
-                            marginBottom: "15px",
-                            marginTop: "10px",
-                            marginLeft: "20px",
-                            marginRight: "25px",
-                        }}
-                        onClick={() => handleButtonClick(1)}
-                        {...(activeButton === 2 && {
-                            width: "50px",
-                            height: "50px",
-                            marginLeft: "25px",
-                            marginRight: "15px",
-                            bgGradient: "linear(to right, #00509d, #00509d)", 
-                            transform: "scale(1.1)", 
-                            color: "white",
-                            borderRadius: "5px",
-                            marginBottom: "15px",
-                            marginTop: "10px",
-                            marginLeft: "20px",
-                            marginRight: "25px",
-                        })}
+        >   
+            <Menu>
+                {/* Menu for avatar and view profile */}
+                <MenuButton
+                    bg="#eaf4f4" 
+                    // rightIcon={<ChevronDownIcon />}
+                    color="#00509d"
+                    width="40px"
+                    marginTop="10px"
+                    marginLeft="25px"
+                    marginRight="25px"
+                    marginBottom="25px"
+                    transition="transform 0.5s"
+                    bg="transparent"
+                    border="none"
+                    _hover={{
+                        width: "50px",
+                        height: "50px",
+                        marginLeft: "25px",
+                        marginRight: "15px",
+                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        transform: "scale(1.1)", 
+                        color: "white",
+                        borderRadius: "5px",
+                        marginBottom: "15px",
+                        marginTop: "10px",
+                        marginLeft: "20px",
+                        marginRight: "25px",
+                    }}
+                    _focus={{
+                        width: "50px",
+                        height: "50px",
+                        marginLeft: "25px",
+                        marginRight: "15px",
+                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        transform: "scale(1.1)", 
+                        color: "white",
+                        borderRadius: "5px",
+                        marginBottom: "15px",
+                        marginTop: "10px",
+                        marginLeft: "20px",
+                        marginRight: "25px",
+                    }}
+                    onClick={() => handleButtonClick(1)}
+                    {...(activeButton === 1 && {
+                        width: "50px",
+                        height: "50px",
+                        marginLeft: "25px",
+                        marginRight: "15px",
+                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        transform: "scale(1.1)", 
+                        color: "white",
+                        borderRadius: "5px",
+                        marginBottom: "15px",
+                        marginTop: "10px",
+                        marginLeft: "20px",
+                        marginRight: "25px",
+                    })}
 
                     >
                     <Avatar
@@ -165,21 +169,16 @@ const NavBar = () => {
                     <MenuDivider />
                     <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                     </MenuList>
-                </Menu>
+            </Menu>
             
         {/* Các biểu tượng tùy chọn */}
             <Button 
-                // ref={menuButtonRef}
                 variant="ghost" 
-                // onClick={onOpen} 
-                // bg="#a1a1c6" 
                 width="60px"
                 alignItems="center"
-                // paddingRight=""
                 marginBottom="10px"
                 marginTop="10px"
                 marginLeft="15px"
-                // marginRight="35px"
                 transition="transform 0.5s"
                 bg="transparent"
                 border="none"
@@ -241,13 +240,7 @@ const NavBar = () => {
                 </MenuList>
                 
                 </Menu>
-                {/* {activeButton === 2 ? (
-                    user && <MyChats fetchAgain={fetchAgain} />
-                ) : (
-                <>
-                    Hello
-                </>
-                )} */}
+                
             </Button>
             <Button 
                 // ref={menuButtonRef}
@@ -283,8 +276,8 @@ const NavBar = () => {
                         transform: "scale(1.1)", 
                         color: "white"
                     }}
-                onClick={() => handleButtonClick(4)}
-                {...(activeButton === 4 && {
+                onClick={() => handleButtonClick(3)}
+                {...(activeButton === 3 && {
                     width: "40px",
                     marginLeft: "25px",
                     marginRight: "15px",
@@ -326,8 +319,8 @@ const NavBar = () => {
                         transform: "scale(1.1)", 
                         color: "white"
                 }}
-                onClick={() => handleButtonClick(3)}
-                {...(activeButton === 3 && {
+                onClick={() => handleButtonClick(4)}
+                {...(activeButton === 4 && {
                     width: "40px",
                     marginLeft: "25px",
                     marginRight: "15px",
@@ -402,8 +395,8 @@ const NavBar = () => {
                         transform: "scale(1.1)", 
                         color: "white"
                     }}
-                onClick={() => handleButtonClick(4)}
-                {...(activeButton === 4 && {
+                onClick={() => handleButtonClick(5)}
+                {...(activeButton === 5 && {
                     width: "40px",
                     marginLeft: "25px",
                     marginRight: "15px",
@@ -415,7 +408,10 @@ const NavBar = () => {
                 <FontAwesomeIcon icon="fa-solid fa-gear" size="xl" />
             </Button>
         </Box>
+        </ActiveButtonContext.Provider>
     )
 }
-
+export const ButtonState = () => {
+    return useContext(ActiveButtonContext);
+}
 export default NavBar
