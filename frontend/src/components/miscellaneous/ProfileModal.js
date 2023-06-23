@@ -16,6 +16,7 @@ import {
 import { Box,} from "@chakra-ui/layout";
 import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // User model template from chakra ui
 const ProfileModal = ({ user, children }) => {
@@ -55,13 +56,16 @@ const ProfileModal = ({ user, children }) => {
       <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent h="410px">
-        <Box w="100px" height="100px" bg="black" />
           <ModalHeader
             fontSize="40px"
             fontFamily="Work sans"
-            d="flex"
+            // d="flex"
             justifyContent="center"
           >
+            <Button 
+              marginRight={10}
+              onClick={() => handleAddFriends(user)}
+            >Add Friend</Button>
             {user.name}
           </ModalHeader>
           <ModalCloseButton />
