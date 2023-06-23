@@ -32,7 +32,8 @@ const NavBar = () => {
         setNotification,
         chats,
         setChats,
-        activeButton, setActiveButton
+        activeButton, 
+        setActiveButton
     } = ChatState();
 
     const menuButtonRef = useRef(null);
@@ -46,17 +47,17 @@ const NavBar = () => {
         setActiveButton(buttonId);
         console.log("active: ", buttonId);
     };
-    useEffect(() => {
-        const handleOutsideClick = () => {
-          setActiveButton(null);
-        };
+    // useEffect(() => {
+    //     const handleOutsideClick = async () => {
+    //       await setActiveButton(10);
+    //     };
       
-        window.addEventListener("click", handleOutsideClick);
+    //     window.addEventListener("click", handleOutsideClick);
       
-        return () => {
-          window.removeEventListener("click", handleOutsideClick);
-        };
-      }, []);
+    //     return () => {
+    //       window.removeEventListener("click", handleOutsideClick);
+    //     };
+    //   }, []);
     const logoutHandler = () => {
         localStorage.removeItem("userInfo");
         history.push("/");

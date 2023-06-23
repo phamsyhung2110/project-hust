@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/layout";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Chatbox from "../components/Chatbox";
 import MyChats from "../components/MyChats";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
@@ -10,9 +10,11 @@ import MyFriends from "../components/MyFriends";
 
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
-  const { selectedChat, setSelectedChat, user, chats, setChats, activeButton } = ChatState();
-  // const activeButton = ButtonState()
+  const { selectedChat, setSelectedChat, 
+    user, chats, setChats, activeButton,
+  } = ChatState();
 
+  
   console.log("Values is: ", activeButton);
 
   return (
