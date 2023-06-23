@@ -22,19 +22,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const ProfileModal = ({ user, loggedUser, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+
   const handleAddFriends = async (loggedUser) => {
+    console.log("user", user.name)
+    console.log("loggeduser", loggedUser.name)
     try {
       const config = {
         headers: {
-          "Content-type": "application/json",
+          // "Content-type": "application/json",
           Authorization: `Bearer ${loggedUser.token}`,
         },
       };
-
-      const { data } = await axios.post(
+      const payload = {
+        ...loggedUser,
+        friendId: user._id,
+      }
+      await axios.post(
         "/api/user/addfriend",
-        //friendID
-        config
+        payload,
+        config,
       );
   } catch (error) {
     toast({
@@ -70,7 +76,7 @@ const ProfileModal = ({ user, loggedUser, children }) => {
             ) : (
               <Button 
                 marginRight={10}
-                onClick={() => handleAddFriends(user)}
+                onClick={() => handleAddFriends(loggedUser)}
               >
                 <FontAwesomeIcon icon="fa-solid fa-user-plus" />
               </Button>
