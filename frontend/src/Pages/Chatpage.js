@@ -8,10 +8,11 @@ import NavBar from "../components/NavBar";
 
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
-  const { user } = ChatState();
+  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
   return (
       <div style={{ width: "100%" }}>
+        {user && <NavBar />}
         <Box 
           d="flex"
           position="fixed"
@@ -23,7 +24,21 @@ const Chatpage = () => {
           // left=" 50px"
           bottom="0vh"
           >
-          {user && <MyChats fetchAgain={fetchAgain} />}
+            <Box
+              d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+              flexDir="column"
+              alignItems="center"
+              p={0}
+              bg="white"
+              left="0"
+              overflow="hidden"
+              w={{ base: "100%", md: "26%" }}
+              h="100%"
+              marginLeft={90}
+            >
+              {user && <MyChats fetchAgain={fetchAgain} />}
+            </Box>
+          
           {user && (
             <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
           )}

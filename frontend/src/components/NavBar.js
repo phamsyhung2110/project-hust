@@ -29,6 +29,7 @@ import { Effect } from "react-notification-badge";
 import { Avatar } from "@chakra-ui/avatar";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import SideDrawer from "./miscellaneous/SideDrawer";
+import MyChats from "./MyChats";
 
 const NavBar = () => {
     const {
@@ -40,13 +41,13 @@ const NavBar = () => {
         setChats,
     } = ChatState();
 
-    const [activeButton, setActiveButton] = useState(null);
+    const [activeButton, setActiveButton] = useState(2);
     const menuButtonRef = useRef(null);
 
     const toast = useToast();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const history = useHistory();
-
+    const [fetchAgain, setFetchAgain] = useState(false);
     
     const handleButtonClick = (buttonId) => {
         setActiveButton(buttonId);
@@ -240,7 +241,13 @@ const NavBar = () => {
                 </MenuList>
                 
                 </Menu>
-                
+                {/* {activeButton === 2 ? (
+                    user && <MyChats fetchAgain={fetchAgain} />
+                ) : (
+                <>
+                    Hello
+                </>
+                )} */}
             </Button>
             <Button 
                 // ref={menuButtonRef}

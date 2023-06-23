@@ -56,20 +56,7 @@ const MyChats = ({ fetchAgain }) => {
 
   //Nếu chọn 1 đoạn chat thì hiển thị ra khung chat(flex), nếu không sẽ ẩn đi(none)
   return (
-    <Box
-      d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
-      flexDir="column"
-      alignItems="center"
-      p={0}
-      bg="white"
-      left="0"
-      overflow="hidden"
-      w={{ base: "100%", md: "26%" }}
-      h="100%"
-      marginLeft={90}
-    >
-      {/* Gọi thanh NavBar */}
-      <NavBar />
+    <>
       {/* Tạo Box Mychat, hiển thị các đoạn chat và nút tạo groupchat */}
       <Box
         pb={3}
@@ -176,8 +163,7 @@ const MyChats = ({ fetchAgain }) => {
           <ChatLoading />
         )}
       </Box>
-    </Box>
-    
+    </>
   );
 };
 
