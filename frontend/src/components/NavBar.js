@@ -12,14 +12,7 @@ import {
     MenuItem,
     MenuList,
 } from "@chakra-ui/menu";
-import {
-    Drawer,
-    DrawerBody,
-    DrawerContent,
-    DrawerHeader,
-    DrawerOverlay,
-  } from "@chakra-ui/modal";
-import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
+
 import { useHistory } from "react-router-dom";
 import { ChatState } from "../Context/ChatProvider";
 import { getSender } from "../config/ChatLogics";
@@ -28,10 +21,9 @@ import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
 import { Avatar } from "@chakra-ui/avatar";
 import ProfileModal from "./miscellaneous/ProfileModal";
-import SideDrawer from "./miscellaneous/SideDrawer";
-import MyChats from "./MyChats";
-
-export const ActiveButtonContext = createContext();
+import { useButtonState } from "../Context/ButtonProvider";
+import { ActiveButtonContext } from "../Context/ButtonProvider";
+import ButtonProvider from "../Context/ButtonProvider";
 
 const NavBar = () => {
     const {
@@ -44,7 +36,7 @@ const NavBar = () => {
         setChats,
     } = ChatState();
 
-    const [activeButton, setActiveButton] = useState(2);
+    const {activeButton, setActiveButton} = useButtonState();
     const menuButtonRef = useRef(null);
 
     const toast = useToast();
@@ -73,7 +65,6 @@ const NavBar = () => {
     };
 
     return (
-        <ActiveButtonContext.Provider value={{activeButton}}>
         <Box
             d={{ base: "block", md: "block" }}
             fontSize={{ base: "20px", md: "20px" }}
@@ -379,10 +370,7 @@ const NavBar = () => {
                 <FontAwesomeIcon icon="fa-solid fa-gear" size="xl" />
             </Button>
         </Box>
-        </ActiveButtonContext.Provider>
     )
 }
-export const ButtonState = () => {
-    return useContext(ActiveButtonContext);
-}
+
 export default NavBar

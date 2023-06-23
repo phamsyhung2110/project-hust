@@ -35,7 +35,10 @@ export const MyFriends = () => {
       });
     }
 }
-    
+    // useEffect(() => {
+    //     setFriends(listFriends());
+    //     console.log("Friends::", friends);
+    // }, []);
     useEffect(() => {
         const fetchFriends = async () => {
             const friendList = await listFriends();
