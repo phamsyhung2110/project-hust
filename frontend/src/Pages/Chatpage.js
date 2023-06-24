@@ -14,8 +14,17 @@ const Chatpage = () => {
     user, chats, setChats, activeButton,
   } = ChatState();
 
-  
-  console.log("Values is: ", activeButton);
+  const [page, setPage] = useState();
+  const setButtonId = (buttonId) => {
+    setPage(buttonId);
+  }
+
+  useEffect(async () => {
+      await setButtonId(activeButton);
+    }, [activeButton]);
+
+
+  console.log("Values is: ", page);
 
   return (
       <div style={{ width: "100%" }}>
@@ -30,9 +39,9 @@ const Chatpage = () => {
           bottom="0vh"
           >
             {/* {user && <MyFriends />} */}
-            {activeButton === 2 ? (
+            {page === 2 ? (
             <Box
-                d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+                // d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
                 flexDir="column"
                 alignItems="center"
                 p={0}
@@ -45,10 +54,11 @@ const Chatpage = () => {
                 >
                 {user && <MyChats fetchAgain={fetchAgain} />}
                 {/* {user && <MyFriends />} */}
+                MyChat
             </Box>
-        ) : (
+        ) : page === 3 ? (
             <Box
-                d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+                // d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
                 flexDir="column"
                 alignItems="center"
                 p={0}
@@ -59,9 +69,28 @@ const Chatpage = () => {
                 h="100%"
                 marginLeft={90}
                 >
+                  {user && <MyFriends />}
+                  Friend
                 {/* {user && <MyChats fetchAgain={fetchAgain} />} */}
             </Box>
-        )}
+        ) : (
+          <Box
+                // d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+                flexDir="column"
+                alignItems="center"
+                p={0}
+                bg="white"
+                left="0"
+                overflow="hidden"
+                w={{ base: "100%", md: "26%" }}
+                h="100%"
+                marginLeft={90}
+          >
+            Not Render
+          </Box>
+        )
+      
+        }
           
           {user && (
             <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />

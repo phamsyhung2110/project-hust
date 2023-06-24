@@ -43,9 +43,9 @@ const NavBar = () => {
     const history = useHistory();
     const [fetchAgain, setFetchAgain] = useState(false);
     
-    const handleButtonClick = (buttonId) => {
-        setActiveButton(buttonId);
-        console.log("active: ", buttonId);
+    const handleButtonClick = async (buttonId) => {
+        await setActiveButton(buttonId);
+        await console.log("active: ", buttonId);
     };
     // useEffect(() => {
     //     const handleOutsideClick = async () => {
