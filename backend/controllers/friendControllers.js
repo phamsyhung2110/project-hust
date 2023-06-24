@@ -65,13 +65,21 @@ const addFriend = asyncHandler(async (req, res) => {
   
 const allFriends = asyncHandler(async (req, res) => {
     //Tìm user đang đăng nhập hiện tại và thông tin bạn bè trong danh sách
-    const currentUser = await User.findById(req.params.userId).populate("friends", "-password");
+    const currentUser = await User.findById(req.params.userId)
+      .populate({
+        path: "friends friendRequests requested",
+        select: "-password",
+      });
   
     if (!currentUser) {
       res.status(404)
       throw new Error("Current user not found or being deleted");
     }
-    res.status(200).json(currentUser.friends);
+    res.status(200).json(
+      { friends: currentUser.friends,
+        friendRequests: currentUser.friendRequests,
+        requested: currentUser.requested
+      });
     // res.status(200).json(req.user.friends);
   })
 

@@ -70,7 +70,6 @@ const Chatpage = () => {
                 marginLeft={90}
                 >
                   {user && <MyFriends />}
-                  Friend
                 {/* {user && <MyChats fetchAgain={fetchAgain} />} */}
             </Box>
         ) : (

@@ -5,11 +5,14 @@ import { ChatState } from "../Context/ChatProvider";
 import { useToast } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 
 export const MyFriends = () => {
     const toast = useToast();
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
     const [friends, setFriends] = useState([]);
+    const [friendRequest, setFriendRequest] = useState([]);
+    const [requested, setRequested] = useState([]);
 
     const listFriends = async () => {
     try {
@@ -22,6 +25,11 @@ export const MyFriends = () => {
           `/api/user/allfriend/${user._id}`,
           config,
         );
+    console.log("list friends", response.data);
+
+    setRequested(response.data.requested);
+    setFriends(response.data.friends);
+    setFriendRequest(response.data.friendRequest);
     return response.data;
 
     } catch (error) {
@@ -41,28 +49,60 @@ export const MyFriends = () => {
     // }, []);
     useEffect(() => {
         const fetchFriends = async () => {
-            const friendList = await listFriends();
-            setFriends(friendList);
-            console.log("Friends::", friendList);
+          const friendList = await listFriends();
+          if (friendList) {
+            setRequested(friendList.requested);
+            setFriends(friendList.friends);
+            setFriendRequest(friendList.friendRequests);
+            console.log("Friends::", friendList.friends);
+            console.log("FriendsRequest::", friendList.friendRequests);
+            console.log("Requested::", friendList.requested);
+          }
         };
         fetchFriends();
     }, []);
 
     return (
-            <Box
-                bg="gray"
-            >
-                {friends.length === 0 ? (
+        <Box
+          pb={3}
+          px={3}
+          bg="#e9ecef"
+          fontSize={{ base: "28px", md: "30px" }}
+          fontFamily="Work sans"
+          d="flex"
+          w="100%"
+          justifyContent="space-between"
+          alignItems="center"
+          marginLeft={0}
+          marginBottom={0}
+          paddingTop={2}
+          borderBottom="1.5px solid"
+          borderColor="#d9dce8"
+        >
+          <Box
+            d="flex"
+            flexDir="column"
+            p={2}
+            bg="#e2e4e5"
+            w="100%"
+            h="match parent"
+            overflowY="hidden"
+          >
+                {requested.length === 0 ? (
                     <h1>No friend</h1>
                     ) : (
-                        <>
-                        {friends.map((friend) => {
+                      <Stack overflowY="scroll">
+                        {requested.map((request) => {
+                          return (
                             <Box
-                            cursor="pointer"
-                            px={3}
-                            py={2}
-                            borderRadius="lg"
-                            key={friend._id}
+                              cursor="pointer"
+                              // Nếu bấm chọn đoạn chat, nó sẽ đổi sang màu khác,
+                              // chữ trong box hiển thị đoạn chat đó sẽ đổi màu đen
+                              px={3}
+                              py={2}
+                              borderRadius="lg"
+                              key={request._id}
+                              bg="white"
                           >
                             <Avatar
                             position="relative"
@@ -70,17 +110,19 @@ export const MyFriends = () => {
                             w="40px"
                             h="40px"
                             cursor="pointer"
-                            // src={getSenderFull(loggedUser, chat.users).pic}
+                            src={request.pic}
                             border="2px solid #3a86ff"
                             marginRight="10px"
                         />
-                            Friend
+                            <h3>{request.name}</h3>
                         </Box>
+                          )
                         })}
-                        </>
+                      </Stack>
                 )}
-                
+              </Box>
             </Box>
+            
         )
 
 }
