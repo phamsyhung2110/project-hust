@@ -130,7 +130,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
     socket.on("stop typing", () => setIsTyping(false));
-
   }, []);
 
   useEffect(() => {
@@ -252,7 +251,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                       <Box fontSize={15}>Online</Box>
                     </Box>
                     {/* Các nút phía góc phải */}
-                    <Box marginRight={0} bg="black">
+                    <Box marginRight={0}>
                       <Tooltip 
                         label="Video call" 
                         hasArrow placement="bottom-end"
@@ -273,7 +272,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                           hasArrow placement="bottom-end"
                         >
                       <Button bg="transparent" border="none">
-                        <FontAwesomeIcon icon="fa-solid fa-play" />
+                        <FontAwesomeIcon icon="fa-solid fa-rectangle-list" />
                       </Button></Tooltip>
                     </Box>
                 </>
@@ -334,7 +333,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                             hasArrow placement="bottom-end"
                           >
                         <Button bg="transparent" border="none">
-                          <FontAwesomeIcon icon="fa-solid fa-play" />
+                          <FontAwesomeIcon icon="fa-solid fa-rectangle-list" />
                         </Button></Tooltip>
                     </Box>
                     {/* Nút Update group chat */}

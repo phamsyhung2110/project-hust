@@ -45,7 +45,7 @@ const Chatpage = () => {
                 flexDir="column"
                 alignItems="center"
                 p={0}
-                bg="white"
+                bg="#e2e4e5"
                 left="0"
                 overflow="hidden"
                 w={{ base: "100%", md: "26%" }}
@@ -53,7 +53,6 @@ const Chatpage = () => {
                 marginLeft={90}
                 >
                 {user && <MyChats fetchAgain={fetchAgain} />}
-                {/* {user && <MyFriends />} */}
             </Box>
         ) : page === 3 ? (
             <Box

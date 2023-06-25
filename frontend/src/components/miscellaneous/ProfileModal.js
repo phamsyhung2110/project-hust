@@ -74,7 +74,7 @@ const ProfileModal = ({ user, loggedUser, children }) => {
               <Text>Friend</Text>
             ) : user.friendRequests.includes(loggedUser._id) ? (
               <Button marginRight={10} >
-                {user.name} Sent you a friend request
+                {user.name} sent you a friend request
               </Button>
             ) : (
               <Button 

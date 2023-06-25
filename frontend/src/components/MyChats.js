@@ -60,7 +60,6 @@ const MyChats = ({ fetchAgain }) => {
       <Box
         pb={3}
         px={3}
-        bg="#e9ecef"
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="Work sans"
         d="flex"
@@ -72,6 +71,7 @@ const MyChats = ({ fetchAgain }) => {
         paddingTop={2}
         borderBottom="1.5px solid"
         borderColor="#d9dce8"
+        bg="#e9ecef"
       >
         {user && <SideDrawer />}
         {/* Hiển thị cửa sổ tạo groupchat */}
@@ -117,6 +117,8 @@ const MyChats = ({ fetchAgain }) => {
                 py={2}
                 borderRadius="lg"
                 key={chat._id}
+                display="flex"
+                // w="00px"
               >
                 
                 <Text
@@ -131,26 +133,29 @@ const MyChats = ({ fetchAgain }) => {
                     border="2px solid #3a86ff"
                     marginRight="10px"
                 />
-                  {!chat.isGroupChat
+                </Text>
+                  <Box flex="1">
+                    {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
-                </Text>
-                {chat.latestMessage && (
-                  <Text fontSize="xs"
-                    marginLeft="50px"
-                    marginTop="0px"
-                    display="flex"
-                  >
-                    <Box flex={1}>{chat.latestMessage.sender.name} : 
-                    {chat.latestMessage.content.length > 30
-                      ? chat.latestMessage.content.substring(0, 31) + "..."
-                      : chat.latestMessage.content}
+                    <Box >
+                      {chat.latestMessage && (
+                        <Text fontSize="xs"
+                          display="flex"
+                        >
+                          <Box flex={1}>{chat.latestMessage.sender.name} : 
+                          {chat.latestMessage.content.length > 30
+                            ? chat.latestMessage.content.substring(0, 31) + "..."
+                            : chat.latestMessage.content}
+                          </Box>
+                          <Box marginLeft="10">
+                            {new Date(chat.latestMessage.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </Box>
+                        </Text>
+                      )}
                     </Box>
-                    <Box marginLeft="10">
-                      {new Date(chat.latestMessage.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </Box>
-                  </Text>
-                )}
+                  </Box>
+                
               </Box>
             ))}
           </Stack>
