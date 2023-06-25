@@ -54,7 +54,6 @@ const Chatpage = () => {
                 >
                 {user && <MyChats fetchAgain={fetchAgain} />}
                 {/* {user && <MyFriends />} */}
-                MyChat
             </Box>
         ) : page === 3 ? (
             <Box

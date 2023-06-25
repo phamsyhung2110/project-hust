@@ -246,12 +246,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   </Box>
                     <Box flex="1">
                       {getSender(user, selectedChat.users)}
-                        {/* <ProfileModal
-                          user={getSenderFull(user, selectedChat.users)}
-                          loggedUser={user}
-                        >
-                        </ProfileModal> */}
                     </Box>
+                    <Button marginRight={5}>A</Button>
+                    <Button marginRight={5}>B</Button>
+                    <Button>C</Button>
                 </>
               ) : (
                 <>
@@ -273,7 +271,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   >
                   </Avatar>
                   </Box>
-                  {selectedChat.chatName.toUpperCase()}
+                    {selectedChat.chatName.toUpperCase()}
                   <Box
                     marginLeft="90px"
                   >

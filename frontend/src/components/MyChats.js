@@ -139,20 +139,16 @@ const MyChats = ({ fetchAgain }) => {
                   <Text fontSize="xs"
                     marginLeft="50px"
                     marginTop="0px"
+                    display="flex"
                   >
-                    <b>{chat.latestMessage.sender.name} : </b>
+                    <Box flex={1}>{chat.latestMessage.sender.name} : 
                     {chat.latestMessage.content.length > 30
                       ? chat.latestMessage.content.substring(0, 31) + "..."
                       : chat.latestMessage.content}
-                    <b style={{
-                      marginLeft: 10,
-                    }}>
-                    {/* {chat.latestMessage.seenBy.length > 0 && (
-                      <span>Seen by User</span>
-                    )} */}
-                    <span>{chat.latestMessage.seenBy[0]}</span>
-                    {new Date(chat.latestMessage.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </b>
+                    </Box>
+                    <Box marginLeft="10">
+                      {new Date(chat.latestMessage.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </Box>
                   </Text>
                 )}
               </Box>
