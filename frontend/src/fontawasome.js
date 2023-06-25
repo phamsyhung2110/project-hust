@@ -15,6 +15,8 @@ import {
     faUserPlus,
     faUserGroup,
     faMessage,
+    faCircleCheck,
+    faCircleXmark,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -32,5 +34,7 @@ library.add(
     faUserPlus,
     faUserGroup,
     faMessage,
+    faCircleCheck,
+    faCircleXmark,
     )
 

@@ -11,6 +11,7 @@ function App() {
       <Route path="/" component={Homepage} exact />
       <Route path="/chats" component={Chatpage} />
     </div>
+    
   );
 }
 

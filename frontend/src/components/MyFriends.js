@@ -8,6 +8,7 @@ import { Avatar } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import { getSenderFull } from "../config/ChatLogics";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const MyFriends = () => {
     const toast = useToast();
@@ -44,7 +45,7 @@ export const MyFriends = () => {
         position: "bottom",
       });
     }
-}
+    }
     // useEffect(() => {
     //     setFriends(listFriends());
     //     console.log("Friends::", friends);
@@ -64,6 +65,12 @@ export const MyFriends = () => {
         fetchFriends();
     }, []);
 
+    const handleAcceptFriend = async () => {
+      console.log("AcceptFriendRequest::",)
+    }
+    const handleRejectFriend = async () => {
+      console.log("RejectFriendRequest::",)
+    }
     return (
         <Box
           pb={3}
@@ -90,11 +97,102 @@ export const MyFriends = () => {
             h="match parent"
             overflowY="hidden"
           >
+              {/* Nếu requested ko có thì render ra danh sách friends, nếu không thì
+              render cả danh sách friend và friend request */}
                 {requested.length === 0 ? (
-                    <h1>No friend</h1>
-                    ) : (
-                      <Stack overflowY="scroll">
-                        <Box>Friend Request</Box>
+                  <Stack overflowY="scroll">
+                    <Box
+                      borderBottom="0.1px solid black"
+                      fontSize="25px"
+                    >Friends</Box>
+                    {friends.map((friend) => {
+                      return (
+                        <Box
+                          cursor="pointer"
+                          // Nếu bấm chọn đoạn chat, nó sẽ đổi sang màu khác,
+                          // chữ trong box hiển thị đoạn chat đó sẽ đổi màu đen
+                          px={3}
+                          py={2}
+                          borderRadius="lg"
+                          key={friend._id}
+                          bg="white"
+                          display={{ base: "none", md: "flex" }}
+                          alignItems="center"
+                          overflow="hidden"
+                      >
+                        <ProfileModal
+                          marginLeft="10px"
+                          user={friend}
+                          loggedUser={user}
+                        >
+                          <Avatar
+                            position="relative"
+                            // mt="15px 15px 15px 15px"
+                            w="40px"
+                            h="40px"
+                            cursor="pointer"
+                            src={friend.pic}
+                            border="2px solid #3a86ff"
+                            marginRight="10px"
+                          />
+                        </ProfileModal>
+                        <Box flex="1">
+                          <h3>{friend.name}</h3>
+                        </Box>
+                        
+                    </Box>
+                      )
+                    })}
+                    </Stack>
+                ) : (
+                  <Stack overflowY="scroll">
+                    {/* Thẻ tiêu đề Friends */}
+                    <Box 
+                      borderBottom="0.1px solid black"
+                      fontSize="25px"
+                    >Friends</Box>
+                    {friends.map((friend) => {
+                      return (
+                        <Box
+                          cursor="pointer"
+                          // Nếu bấm chọn đoạn chat, nó sẽ đổi sang màu khác,
+                          // chữ trong box hiển thị đoạn chat đó sẽ đổi màu đen
+                          px={3}
+                          py={2}
+                          borderRadius="lg"
+                          key={friend._id}
+                          bg="white"
+                          display={{ base: "none", md: "flex" }}
+                          alignItems="center"
+                          overflow="hidden"
+                      >
+                        <ProfileModal
+                          marginLeft="10px"
+                          user={friend}
+                          loggedUser={user}
+                        >
+                          <Avatar
+                            position="relative"
+                            // mt="15px 15px 15px 15px"
+                            w="40px"
+                            h="40px"
+                            cursor="pointer"
+                            src={friend.pic}
+                            border="2px solid #3a86ff"
+                            marginRight="10px"
+                          />
+                        </ProfileModal>
+                        <Box flex="1">
+                          <h3>{friend.name}</h3>
+                        </Box>
+                        
+                    </Box>
+                      )
+                    })}
+                    <Box
+                      borderBottom="0.1px solid black"
+                      fontSize="25px"
+                    >Friend requests</Box>
                         {requested.map((request) => {
                           return (
                             <Box
@@ -106,39 +204,57 @@ export const MyFriends = () => {
                               borderRadius="lg"
                               key={request._id}
                               bg="white"
-                              display="flex"
+                              display={{ base: "none", md: "flex" }}
                               alignItems="center"
+                              overflow="hidden"
                           >
-                            <Avatar
-                            position="relative"
-                            // mt="15px 15px 15px 15px"
-                            w="40px"
-                            h="40px"
-                            cursor="pointer"
-                            src={request.pic}
-                            border="2px solid #3a86ff"
-                            marginRight="10px"
-                        >
-                        </Avatar>
-                            <Box flex="1">
-                              <h3>{request.name}</h3>
-                            </Box>
                             <ProfileModal
                               marginLeft="10px"
                               user={request}
                               loggedUser={user}
-                            />
+                            >
+                              <Avatar
+                                position="relative"
+                                // mt="15px 15px 15px 15px"
+                                w="40px"
+                                h="40px"
+                                cursor="pointer"
+                                src={request.pic}
+                                border="2px solid #3a86ff"
+                                marginRight="10px"
+                              />
+                            </ProfileModal>
+                            <Box flex="1">
+                              <h3>{request.name}</h3>
+                            </Box>
                             <Button
                               marginLeft="10px"
-                            ></Button>
+                              onClick={handleAcceptFriend}
+                              overflow="hidden"
+                              bg="#00509d"
+                              color="white"
+                            > 
+                              <Box >
+                                <FontAwesomeIcon icon="fa-solid fa-circle-check" size="lg" />
+                              </Box>
+                            </Button>
                             <Button
+                              onClick={handleRejectFriend}
                               marginLeft="10px"
-                            ></Button>
+                              overflow="hidden"
+                              bg="red.400"
+                              color="white"
+                            >
+                              <Box >
+                                <FontAwesomeIcon icon="fa-solid fa-circle-xmark" size="lg" />
+                              </Box>
+                            </Button>
                             
                         </Box>
                           )
                         })}
-                      </Stack>
+
+                    </Stack>
                 )}
               </Box>
             </Box>

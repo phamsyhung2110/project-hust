@@ -62,11 +62,10 @@ const ProfileModal = ({ user, loggedUser, children }) => {
       )}
       <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent h="410px">
+        <ModalContent h="450px" alignItems="center" display="flex">
           <ModalHeader
             fontSize="40px"
             fontFamily="Work sans"
-            // d="flex"
             justifyContent="center"
           >
             {user._id === loggedUser._id ? (
@@ -74,7 +73,9 @@ const ProfileModal = ({ user, loggedUser, children }) => {
             ) : user.friends.includes(loggedUser._id) ? (
               <Text>Friend</Text>
             ) : user.friendRequests.includes(loggedUser._id) ? (
-              <Button marginRight={10} >Requested</Button>
+              <Button marginRight={10} >
+                {user.name} Sent you a friend request
+              </Button>
             ) : (
               <Button 
                 marginRight={10}
@@ -83,7 +84,8 @@ const ProfileModal = ({ user, loggedUser, children }) => {
                 <FontAwesomeIcon icon="fa-solid fa-user-plus" />
               </Button>
             )}
-            {user.name}
+            <Box>{user.name}</Box>
+            
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody
