@@ -2,10 +2,12 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ChatState } from "../Context/ChatProvider";
-import { useToast } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
+import ProfileModal from "./miscellaneous/ProfileModal";
+import { getSenderFull } from "../config/ChatLogics";
 
 export const MyFriends = () => {
     const toast = useToast();
@@ -92,6 +94,7 @@ export const MyFriends = () => {
                     <h1>No friend</h1>
                     ) : (
                       <Stack overflowY="scroll">
+                        <Box>Friend Request</Box>
                         {requested.map((request) => {
                           return (
                             <Box
@@ -103,6 +106,8 @@ export const MyFriends = () => {
                               borderRadius="lg"
                               key={request._id}
                               bg="white"
+                              display="flex"
+                              alignItems="center"
                           >
                             <Avatar
                             position="relative"
@@ -113,8 +118,23 @@ export const MyFriends = () => {
                             src={request.pic}
                             border="2px solid #3a86ff"
                             marginRight="10px"
-                        />
-                            <h3>{request.name}</h3>
+                        >
+                        </Avatar>
+                            <Box flex="1">
+                              <h3>{request.name}</h3>
+                            </Box>
+                            <ProfileModal
+                              marginLeft="10px"
+                              user={request}
+                              loggedUser={user}
+                            />
+                            <Button
+                              marginLeft="10px"
+                            ></Button>
+                            <Button
+                              marginLeft="10px"
+                            ></Button>
+                            
                         </Box>
                           )
                         })}
