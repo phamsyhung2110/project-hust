@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button } from "@chakra-ui/button";
 import { Avatar } from "@chakra-ui/avatar";
 import { PhoneIcon } from "@chakra-ui/icons";
+import { useDisclosure } from "@chakra-ui/react";
 
 // const ENDPOINT = process.env.REACT_APP_API_URL; 
 const ENDPOINT = "http://localhost:5000"
@@ -48,7 +49,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
   const { selectedChat, setSelectedChat, user, notification, setNotification, chats } =
     ChatState();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { onOpen } = useDisclosure();
+  const handleAvatarClick = () => {
+      setIsModalOpen(true);
+      onOpen();
+  };
   const fetchMessages = async () => {
     if (!selectedChat) return;
 
@@ -176,18 +182,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     markMessageAsSeen();
   }, [selectedChat, messages]);
 
-  // const checkSeen = async () => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `/api/message/${selectedChat._id}`,
-  //       config
-  //     );
-  //     if data.
-  //   } catch (error) {
-  //     console.error("Error marking message as seen:", error);
-  //   }
-  // }
-
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
 
@@ -233,22 +227,31 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               (!selectedChat.isGroupChat ? (
                 <>
                   {/* Avatar ở trên, hiển thị tên và avt người đang nhắn tin */}
-                  <Avatar
-                    mt="15px 15px 15px 15px"
-                    w="60px"
-                    h="60px"
-                    cursor="pointer"
-                    src={getSenderFull(user, selectedChat.users).pic}
-                    border="3px solid #3a86ff"
-                    marginRight="10px"
-                  >
-                  </Avatar>
-                    {getSender(user, selectedChat.users)}
-                    <ProfileModal
-                      user={getSenderFull(user, selectedChat.users)}
-                      loggedUser={user}
-                    >
-                    </ProfileModal>
+                  <Box>
+                      <ProfileModal 
+                        user={getSenderFull(user, selectedChat.users)}
+                        loggedUser={user}
+                        onClose={() => setIsModalOpen(false)}>
+                          <Avatar
+                            mt="15px 15px 15px 15px"
+                            w="60px"
+                            h="60px"
+                            cursor="pointer"
+                            src={getSenderFull(user, selectedChat.users).pic}
+                            border="3px solid #3a86ff"
+                            marginRight="10px"
+                            onClick={handleAvatarClick}
+                        />
+                      </ProfileModal>
+                  </Box>
+                    <Box flex="1">
+                      {getSender(user, selectedChat.users)}
+                        {/* <ProfileModal
+                          user={getSenderFull(user, selectedChat.users)}
+                          loggedUser={user}
+                        >
+                        </ProfileModal> */}
+                    </Box>
                 </>
               ) : (
                 <>
