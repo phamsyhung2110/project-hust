@@ -19,6 +19,7 @@ import { Button } from "@chakra-ui/button";
 import { Avatar } from "@chakra-ui/avatar";
 import { PhoneIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/react";
+import { Tooltip } from "@chakra-ui/react";
 
 // const ENDPOINT = process.env.REACT_APP_API_URL; 
 const ENDPOINT = "http://localhost:5000"
@@ -221,6 +222,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             borderBottom="1.5px solid"
             // bg="black"
             borderColor="#e2e4e5"
+            marginLeft="15px"
 
           >
           {messages &&
@@ -250,22 +252,37 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                       <Box fontSize={15}>Online</Box>
                     </Box>
                     {/* Các nút phía góc phải */}
-                    <Button marginRight={5} bg="transparent" border="none">
-                      <FontAwesomeIcon icon="fa-solid fa-video" />
-                    </Button>
-                    <Button marginRight={5} bg="transparent" border="none">
-                      <FontAwesomeIcon icon="fa-solid fa-phone" />
-                    </Button>
-                    <Button bg="transparent" border="none">
-                      <FontAwesomeIcon icon="fa-solid fa-play" />
-                    </Button>
+                    <Box marginRight={0} bg="black">
+                      <Tooltip 
+                        label="Video call" 
+                        hasArrow placement="bottom-end"
+                      >
+                        <Button marginRight={5} bg="transparent" border="none">
+                          <FontAwesomeIcon icon="fa-solid fa-video" />
+                        </Button></Tooltip>
+
+                      <Tooltip 
+                        label="Call" 
+                        hasArrow placement="bottom-end"
+                      >
+                        <Button marginRight={5} bg="transparent" border="none">
+                          <FontAwesomeIcon icon="fa-solid fa-phone" />
+                        </Button></Tooltip>
+                        <Tooltip 
+                          label="Additional" 
+                          hasArrow placement="bottom-end"
+                        >
+                      <Button bg="transparent" border="none">
+                        <FontAwesomeIcon icon="fa-solid fa-play" />
+                      </Button></Tooltip>
+                    </Box>
                 </>
               ) : (
                 <>
                   <Box
                     w="60px"
                     h="60px"
-                    d="flex" 
+                    display="flex" 
                     alignItems="center"
                   >
                     <Avatar
@@ -277,9 +294,18 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                       marginRight="10px"
                       marginBottom="0px"
                     />
-                    <Box paddingBottom="30px" flex="1" display="flex" alignItems="center" >
-                      {selectedChat.chatName.toUpperCase()}
+                  </Box>
+                    <Box paddingBottom="10px" 
+                      marginLeft={2}
+                      flex="1" 
+                      // alignItems="center"
+                      display="flex" 
+                    >
                       <Box>
+                        {selectedChat.chatName.toUpperCase()}
+                        <Text fontSize={15}>Members</Text>
+                      </Box>
+                      <Box marginTop={2}>
                         <UpdateGroupChatModal
                             fetchMessages={fetchMessages}
                             fetchAgain={fetchAgain}
@@ -287,8 +313,31 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                           />
                       </Box>
                     </Box>
+                      <Box marginRight={0} display="flex">
+                        <Tooltip 
+                          label="Video call" 
+                          hasArrow placement="bottom-end"
+                        >
+                          <Button marginRight={5} bg="transparent" border="none">
+                            <FontAwesomeIcon icon="fa-solid fa-video" />
+                          </Button></Tooltip>
+
+                        <Tooltip 
+                          label="Call" 
+                          hasArrow placement="bottom-end"
+                        >
+                          <Button marginRight={5} bg="transparent" border="none">
+                            <FontAwesomeIcon icon="fa-solid fa-phone" />
+                          </Button></Tooltip>
+                          <Tooltip 
+                            label="Additional" 
+                            hasArrow placement="bottom-end"
+                          >
+                        <Button bg="transparent" border="none">
+                          <FontAwesomeIcon icon="fa-solid fa-play" />
+                        </Button></Tooltip>
+                    </Box>
                     {/* Nút Update group chat */}
-                  </Box>
                     
                   
                 </>
