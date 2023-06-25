@@ -17,6 +17,7 @@ import {
     faMessage,
     faCircleCheck,
     faCircleXmark,
+    faPlay,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -36,5 +37,6 @@ library.add(
     faMessage,
     faCircleCheck,
     faCircleXmark,
+    faPlay,
     )
 

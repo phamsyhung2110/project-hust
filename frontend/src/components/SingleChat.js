@@ -244,43 +244,52 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         />
                       </ProfileModal>
                   </Box>
-                    <Box flex="1">
+                    {/* Box hiển thị tên người đang chat */}
+                    <Box paddingBottom="10px" flex="1">
                       {getSender(user, selectedChat.users)}
+                      <Box fontSize={15}>Online</Box>
                     </Box>
-                    <Button marginRight={5}>A</Button>
-                    <Button marginRight={5}>B</Button>
-                    <Button>C</Button>
+                    {/* Các nút phía góc phải */}
+                    <Button marginRight={5} bg="transparent" border="none">
+                      <FontAwesomeIcon icon="fa-solid fa-video" />
+                    </Button>
+                    <Button marginRight={5} bg="transparent" border="none">
+                      <FontAwesomeIcon icon="fa-solid fa-phone" />
+                    </Button>
+                    <Button bg="transparent" border="none">
+                      <FontAwesomeIcon icon="fa-solid fa-play" />
+                    </Button>
                 </>
               ) : (
                 <>
                   <Box
                     w="60px"
                     h="60px"
-                    bg="black"
-                    d="flex" alignItems="center"
+                    d="flex" 
+                    alignItems="center"
                   >
                     <Avatar
-                    // mt="15px 15px 15px 15px"
-                    w="60px"
-                    h="60px"
-                    cursor="pointer"
-                    border="1px solid #3a86ff"
-                    marginRight="100px"
-                    marginBottom="0px"
-                    // marginTop="20px"
-                  >
-                  </Avatar>
-                  </Box>
-                    {selectedChat.chatName.toUpperCase()}
-                  <Box
-                    marginLeft="90px"
-                  >
-                    <UpdateGroupChatModal
-                      fetchMessages={fetchMessages}
-                      fetchAgain={fetchAgain}
-                      setFetchAgain={setFetchAgain}
+                      mt="15px 15px 15px 15px"
+                      w="60px"
+                      h="60px"
+                      cursor="pointer"
+                      border="1px solid #3a86ff"
+                      marginRight="10px"
+                      marginBottom="0px"
                     />
+                    <Box paddingBottom="30px" flex="1" display="flex" alignItems="center" >
+                      {selectedChat.chatName.toUpperCase()}
+                      <Box>
+                        <UpdateGroupChatModal
+                            fetchMessages={fetchMessages}
+                            fetchAgain={fetchAgain}
+                            setFetchAgain={setFetchAgain}
+                          />
+                      </Box>
+                    </Box>
+                    {/* Nút Update group chat */}
                   </Box>
+                    
                   
                 </>
               ))}
