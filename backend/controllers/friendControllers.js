@@ -139,11 +139,11 @@ const rejectFriendRequest = asyncHandler(async (req, res) => {
   });
   
 const acceptFriendRequest = asyncHandler(async (req, res) => {
-    const { friendId, userId } = req.body;
-    const currentUser = await User.findById(userId);
+    const { friendId, _id } = req.body;
+    const currentUser = await User.findById(_id);
   
     // Gọi hàm handleFriendRequest để chấp nhận lời mời kết bạn
-    const result = await handleFriendRequest(currentUser, friendId, userId, true);
+    const result = await handleFriendRequest(currentUser, friendId, _id, true);
   
     res.status(200).json(result);
   });

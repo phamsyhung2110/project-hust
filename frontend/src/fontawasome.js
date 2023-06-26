@@ -19,6 +19,8 @@ import {
     faCircleXmark,
     faPlay,
     faRectangleList,
+    faUserCheck,
+    faSquareArrowUpRight,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -40,5 +42,7 @@ library.add(
     faCircleXmark,
     faPlay,
     faRectangleList,
+    faUserCheck,
+    faSquareArrowUpRight,
     )
 

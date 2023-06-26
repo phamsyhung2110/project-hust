@@ -60,21 +60,45 @@ const ProfileModal = ({ user, loggedUser, children }) => {
       ) : (
         <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
       )}
-      <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
+      <Modal size="xl" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent h="450px" alignItems="center" display="flex">
+        <ModalContent h="450px" 
+          
+          >
           <ModalHeader
             fontSize="40px"
             fontFamily="Work sans"
             justifyContent="center"
+            // display="flex"
+            alignItems="center"
           >
             {user._id === loggedUser._id ? (
               null // Nếu user._id == loggedUser._id, không hiển thị gì cả
             ) : user.friends.includes(loggedUser._id) ? (
-              <Text>Friend</Text>
+              <Box
+                alignItems="center"
+                fontSize={20}
+                // flex="1"
+                // bg="black"
+                paddingRight={50}
+                // marginRight={40}
+              >
+                <FontAwesomeIcon icon="fa-solid fa-user-check" size="2xl"/>
+              </Box>
             ) : user.friendRequests.includes(loggedUser._id) ? (
+              <Box
+                alignItems="center"
+                fontSize={20}
+                // flex="1"
+                // bg="black"
+                paddingRight={50}
+                // marginRight={40}
+              >
+                <FontAwesomeIcon icon="fa-solid fa-square-arrow-up-right" />
+              </Box>
+            ) :  user.requested.includes(loggedUser._id) ? (
               <Button marginRight={10} >
-                Requested
+                {user.name} Sent you a friend request
               </Button>
             ) : (
               // Nút add friend trong profile modal
@@ -85,7 +109,8 @@ const ProfileModal = ({ user, loggedUser, children }) => {
                 <FontAwesomeIcon icon="fa-solid fa-user-plus" />
               </Button>
             )}
-            <Box>{user.name}</Box>
+
+            <Box marginLeft={220}>{user.name}</Box>
             
           </ModalHeader>
           <ModalCloseButton />

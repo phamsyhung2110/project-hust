@@ -29,7 +29,7 @@ export const MyFriends = () => {
           config,
         );
     console.log("list friends", response.data);
-
+    
     setRequested(response.data.requested);
     setFriends(response.data.friends);
     setFriendRequest(response.data.friendRequests);
@@ -46,67 +46,49 @@ export const MyFriends = () => {
       });
     }
     }
-    // const handleAcceptFriends = async (requesterId) => {
-    //   try {
-    //     const config = {
-    //       headers: {
-    //         Authorization: `Bearer ${user.token}`,
-    //       },
-    //     };
-    //     const payload = {
-    //       ...user,
-    //       friendId: user._id,
-    //     }
-    //     await axios.post(
-    //       "/api/user/acceptfriend",
-    //       payload,
-    //       config,
-    //     );
-    // } catch (error) {
-    //   toast({
-    //     title: "Error Occured!",
-    //     description: error.response.data.message,
-    //     status: "error",
-    //     duration: 5000,
-    //     isClosable: true,
-    //     position: "bottom",
-    //   });
-    //   }
-    // }
-    // useEffect(() => {
-    //     setFriends(listFriends());
-    //     console.log("Friends::", friends);
-    // }, []);
-    useEffect(() => {
-        const fetchFriends = async () => {
-          const friendList = await listFriends();
-          if (friendList) {
-            setFriends(friendList.friends);
-            console.log("Friends::", friendList.friends);
-          }
+    const handleAcceptFriends = async (requesterId) => {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
         };
-        fetchFriends();
-    }, [friends]);
+        const payload = {
+          ...user,
+          friendId: requesterId,
+        }
+        await axios.post(
+          "/api/user/acceptfriend",
+          payload,
+          config,
+        );
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: error.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      }
+    }
+
+  
     useEffect(() => {
       const fetchFriends = async () => {
         const friendList = await listFriends();
         if (friendList) {
           setRequested(friendList.requested);
+          setFriends(friendList.friends);
+          setFriendRequest(friendList.friendRequests);
+          console.log("Friends::", friendList.friends);
+          console.log("FriendsRequest::", friendList.friendRequests);
           console.log("Requested::", friendList.requested);
         }
       };
       fetchFriends();
-    }, [requested]);
-    useEffect(() => {
-      const fetchFriends = async () => {
-        const friendList = await listFriends();
-        if (friendList) {
-          setFriendRequest(friendList.friendRequests);
-          console.log("FriendsRequest::", friendList.friendRequests);
-        }
-      };
-      fetchFriends();
-  }, [friendRequest]);
+    }, []);
 
     const handleAcceptFriend = async () => {
       console.log("AcceptFriendRequest::",)
@@ -272,7 +254,7 @@ export const MyFriends = () => {
                             </Box>
                             <Button
                               marginLeft="10px"
-                              onClick={handleAcceptFriend}
+                              onClick={() => handleAcceptFriends(request._id)}
                               overflow="hidden"
                               bg="#00509d"
                               color="white"
