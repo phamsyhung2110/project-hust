@@ -75,17 +75,17 @@ const NavBar = () => {
             bottom="0"
             width="90px"
             height="match-parent"
-            backgroundColor="#eaf4f4"
-            color="black"
+            backgroundColor="#1a78ff"
+            // color="black"
             zIndex={999}
-            // onClick={handleOutsideClick}
+            borderRight="0.5px solid #d6d6cd"
         >   
             <Menu>
                 {/* Menu for avatar and view profile */}
                 <MenuButton
                     bg="#eaf4f4" 
-                    // rightIcon={<ChevronDownIcon />}
-                    color="#00509d"
+                    // rightIcon={<ChevronDownIcon />
+                    color="white"
                     width="40px"
                     marginTop="10px"
                     marginLeft="25px"
@@ -99,7 +99,7 @@ const NavBar = () => {
                         height: "50px",
                         marginLeft: "25px",
                         marginRight: "15px",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
                         color: "white",
                         borderRadius: "5px",
@@ -113,7 +113,7 @@ const NavBar = () => {
                         height: "50px",
                         marginLeft: "25px",
                         marginRight: "15px",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
                         color: "white",
                         borderRadius: "5px",
@@ -128,7 +128,7 @@ const NavBar = () => {
                         height: "50px",
                         marginLeft: "25px",
                         marginRight: "15px",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
                         color: "white",
                         borderRadius: "5px",
@@ -153,7 +153,7 @@ const NavBar = () => {
                     {/* When click to my profile, display the ProfileModal from miscellanous/ */}
                     <ProfileModal user={user} loggedUser={user}>
                         <MenuItem
-                            color="#00509d"
+                            color="white"
                         >My Profile</MenuItem>{" "}
                     </ProfileModal>
                     <MenuDivider />
@@ -172,33 +172,33 @@ const NavBar = () => {
                 transition="transform 0.5s"
                 bg="transparent"
                 border="none"
-                color="#00509d"
+                color="white"
                 _hover={{
                         width: "40px",
                         marginLeft: "25px",
                         marginRight: "15px",
                         // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
-                        color: "white"
+                        color: "#1a78ff"
                     }}
                 _focus={{
                         width: "40px",
                         marginLeft: "25px",
                         marginRight: "15px",
                         // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
-                        color: "white"
+                        color: "#1a78ff"
                     }}
                 onClick={() => handleButtonClick(2)}
                 {...(activeButton === 2 && {
                     width: "40px",
                     marginLeft: "25px",
                     marginRight: "15px",
-                    bgGradient: "linear(to right, #00509d, #00509d)",
+                    bgGradient: "linear(to right, #e6f0ff,#e6f0ff)",
                     transform: "scale(1.1)",
-                    color: "white"
+                    color: "#1a78ff"
                 })}
             >   
                 <FontAwesomeIcon icon="fa-solid fa-message" size="xl" />                
@@ -218,33 +218,33 @@ const NavBar = () => {
                 transition="transform 0.5s"
                 bg="transparent"
                 border="none"
-                color="#00509d"
+                color="white"
                 _hover={{
                         width: "40px",
                         marginLeft: "25px",
                         marginRight: "15px",
                         // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
-                        color: "white"
+                        color: "#1a78ff"
                     }}
                 _focus={{
                         width: "40px",
                         marginLeft: "25px",
                         marginRight: "15px",
                         // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
-                        color: "white"
+                        color: "#1a78ff"
                     }}
                 onClick={() => handleButtonClick(3)}
                 {...(activeButton === 3 && {
                     width: "40px",
                     marginLeft: "25px",
                     marginRight: "15px",
-                    bgGradient: "linear(to right, #00509d, #00509d)",
+                    bgGradient: "linear(to right, #e6f0ff,#e6f0ff)",
                     transform: "scale(1.1)",
-                    color: "white"
+                    color: "#1a78ff"
                 })}
             >
                 <FontAwesomeIcon icon="fa-solid fa-address-book" size="xl" />
@@ -261,33 +261,33 @@ const NavBar = () => {
                 transition="transform 0.5s"
                 bg="transparent"
                 border="none"
-                color="#00509d"
+                color="white"
                 _hover={{
                         width: "40px",
                         marginLeft: "25px",
                         marginRight: "15px",
                         // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
-                        color: "white"
+                        color: "#1a78ff"
                     }}
                 _focus={{
                         width: "40px",
                         marginLeft: "25px",
                         marginRight: "15px",
                         // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
-                        color: "white"
+                        color: "#1a78ff"
                 }}
                 onClick={() => handleButtonClick(4)}
                 {...(activeButton === 4 && {
                     width: "40px",
                     marginLeft: "25px",
                     marginRight: "15px",
-                    bgGradient: "linear(to right, #00509d, #00509d)",
+                    bgGradient: "linear(to right, #e6f0ff,#e6f0ff)",
                     transform: "scale(1.1)",
-                    color: "white"
+                    color: "#1a78ff"
                 })}
 
             >
@@ -337,33 +337,33 @@ const NavBar = () => {
                 transition="transform 0.5s"
                 bg="transparent"
                 border="none"
-                color="#00509d"
+                color="white"
                 _hover={{
                         width: "40px",
                         marginLeft: "25px",
                         marginRight: "15px",
                         // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
-                        color: "white"
+                        color: "#1a78ff"
                     }}
                 _focus={{
                         width: "40px",
                         marginLeft: "25px",
                         marginRight: "15px",
                         // backgroundColor: "00509d",
-                        bgGradient: "linear(to right, #00509d, #00509d)", 
+                        bgGradient: "linear(to right, #e6f0ff,#e6f0ff)", 
                         transform: "scale(1.1)", 
-                        color: "white"
+                        color: "#1a78ff"
                     }}
                 onClick={() => handleButtonClick(5)}
                 {...(activeButton === 5 && {
                     width: "40px",
                     marginLeft: "25px",
                     marginRight: "15px",
-                    bgGradient: "linear(to right, #00509d, #00509d)",
+                    bgGradient: "linear(to right, #e6f0ff,#e6f0ff)",
                     transform: "scale(1.1)",
-                    color: "white"
+                    color: "#1a78ff"
                 })}
             >
                 <FontAwesomeIcon icon="fa-solid fa-gear" size="xl" />

@@ -145,7 +145,7 @@ function SideDrawer() {
           <Button 
             variant="ghost"
             onClick={onOpen} 
-            bg="white"  
+            bg="#e6f0ff"  
             width="250px"
             alignItems="center"
             // paddingRight=""
@@ -173,7 +173,7 @@ function SideDrawer() {
           <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
           <DrawerBody>
             {/* Nhập vào text để search */}
-            <Box d="flex" pb={2}>
+            <Box d="flex" pb={2} >
               <Input
                 placeholder="Search by name or email"
                 mr={2}

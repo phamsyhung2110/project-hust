@@ -264,7 +264,7 @@ export const MyFriends = () => {
                               </Box>
                             </Button>
                             <Button
-                              onClick={handleRejectFriend}
+                              onClick={() => handleRejectFriend(request._id)}
                               marginLeft="10px"
                               overflow="hidden"
                               bg="red.400"

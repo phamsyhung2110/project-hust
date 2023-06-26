@@ -69,9 +69,9 @@ const MyChats = ({ fetchAgain }) => {
         marginLeft={0}
         marginBottom={0}
         paddingTop={2}
-        borderBottom="1.5px solid"
+        borderBottom="1.5px solid "
         borderColor="#d9dce8"
-        bg="#e9ecef"
+        // bg="#cce1ff"
       >
         {user && <SideDrawer />}
         {/* Hiển thị cửa sổ tạo groupchat */}
@@ -86,7 +86,7 @@ const MyChats = ({ fetchAgain }) => {
               bgColor="white"
               w="30px"
             >
-              <FontAwesomeIcon icon="fa-solid fa-user-group" size="lg" />
+              <FontAwesomeIcon icon="fa-solid fa-user-group"/>
             </Button>
           </Tooltip>
         </GroupChatModal>
@@ -98,7 +98,7 @@ const MyChats = ({ fetchAgain }) => {
         d="flex"
         flexDir="column"
         p={2}
-        bg="#e2e4e5"
+        bg="white"
         w="100%"
         h="match parent"
         overflowY="hidden"
@@ -109,15 +109,16 @@ const MyChats = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                // Nếu bấm chọn đoạn chat, nó sẽ đổi sang màu khác,
+                // Nếu bấm chọn đoạn chat, nó sẽ đổi sang màu khác,#00509d
                 // chữ trong box hiển thị đoạn chat đó sẽ đổi màu đen
-                bg={selectedChat === chat ? "#a1a1c6" : "white"}
+                bg={selectedChat === chat ? "#1a78ff" : "white"}
                 color={selectedChat === chat ? "white" : "black"}
                 px={3}
                 py={2}
                 borderRadius="lg"
                 key={chat._id}
                 display="flex"
+                
                 // w="00px"
               >
                 

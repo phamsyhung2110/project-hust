@@ -45,7 +45,7 @@ const Chatpage = () => {
                 flexDir="column"
                 alignItems="center"
                 p={0}
-                bg="#e2e4e5"
+                bg="white"
                 left="0"
                 overflow="hidden"
                 w={{ base: "100%", md: "26%" }}

@@ -36,7 +36,7 @@ const ScrollableChat = ({ messages }) => {
               //Style ô chứa tin nhắn
               style={{
                 backgroundColor: `${
-                  m.sender._id === user._id ? "#7a00ff" : "#d9dce8"
+                  m.sender._id === user._id ? "#1a78ff" : "#d9dce8"
                 }`,
                 color: `${
                   m.sender._id === user._id ? "white" : "black"
