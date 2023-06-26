@@ -29,7 +29,6 @@ const ProfileModal = ({ user, loggedUser, children }) => {
     try {
       const config = {
         headers: {
-          // "Content-type": "application/json",
           Authorization: `Bearer ${loggedUser.token}`,
         },
       };
@@ -53,6 +52,7 @@ const ProfileModal = ({ user, loggedUser, children }) => {
     });
     }
   }
+  
   return (
     <>
       {children ? (
@@ -74,9 +74,10 @@ const ProfileModal = ({ user, loggedUser, children }) => {
               <Text>Friend</Text>
             ) : user.friendRequests.includes(loggedUser._id) ? (
               <Button marginRight={10} >
-                {user.name} sent you a friend request
+                Requested
               </Button>
             ) : (
+              // Nút add friend trong profile modal
               <Button 
                 marginRight={10}
                 onClick={() => handleAddFriends(loggedUser)}

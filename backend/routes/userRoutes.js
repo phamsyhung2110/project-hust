@@ -15,7 +15,8 @@ router.route("/allfriend/:userId").get(allFriends);
 
 router.route("/").post(registerUser);
 router.post("/login", authUser);
-router.route("/rejectfriends").post(protect, rejectFriendRequest); //API reject friend request
+router.route("/rejectfriend").post(protect, rejectFriendRequest); //API reject friend request
+router.route("/acceptfriend").post(protect, rejectFriendRequest);
 router.route("/addfriend").post(protect, addFriend); //API add friend request
 
 

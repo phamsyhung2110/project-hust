@@ -32,7 +32,7 @@ export const MyFriends = () => {
 
     setRequested(response.data.requested);
     setFriends(response.data.friends);
-    setFriendRequest(response.data.friendRequest);
+    setFriendRequest(response.data.friendRequests);
     return response.data;
 
     } catch (error) {
@@ -46,6 +46,33 @@ export const MyFriends = () => {
       });
     }
     }
+    // const handleAcceptFriends = async (requesterId) => {
+    //   try {
+    //     const config = {
+    //       headers: {
+    //         Authorization: `Bearer ${user.token}`,
+    //       },
+    //     };
+    //     const payload = {
+    //       ...user,
+    //       friendId: user._id,
+    //     }
+    //     await axios.post(
+    //       "/api/user/acceptfriend",
+    //       payload,
+    //       config,
+    //     );
+    // } catch (error) {
+    //   toast({
+    //     title: "Error Occured!",
+    //     description: error.response.data.message,
+    //     status: "error",
+    //     duration: 5000,
+    //     isClosable: true,
+    //     position: "bottom",
+    //   });
+    //   }
+    // }
     // useEffect(() => {
     //     setFriends(listFriends());
     //     console.log("Friends::", friends);
@@ -54,16 +81,32 @@ export const MyFriends = () => {
         const fetchFriends = async () => {
           const friendList = await listFriends();
           if (friendList) {
-            setRequested(friendList.requested);
             setFriends(friendList.friends);
-            setFriendRequest(friendList.friendRequests);
             console.log("Friends::", friendList.friends);
-            console.log("FriendsRequest::", friendList.friendRequests);
-            console.log("Requested::", friendList.requested);
           }
         };
         fetchFriends();
-    }, []);
+    }, [friends]);
+    useEffect(() => {
+      const fetchFriends = async () => {
+        const friendList = await listFriends();
+        if (friendList) {
+          setRequested(friendList.requested);
+          console.log("Requested::", friendList.requested);
+        }
+      };
+      fetchFriends();
+    }, [requested]);
+    useEffect(() => {
+      const fetchFriends = async () => {
+        const friendList = await listFriends();
+        if (friendList) {
+          setFriendRequest(friendList.friendRequests);
+          console.log("FriendsRequest::", friendList.friendRequests);
+        }
+      };
+      fetchFriends();
+  }, [friendRequest]);
 
     const handleAcceptFriend = async () => {
       console.log("AcceptFriendRequest::",)
@@ -99,7 +142,7 @@ export const MyFriends = () => {
           >
               {/* Nếu requested ko có thì render ra danh sách friends, nếu không thì
               render cả danh sách friend và friend request */}
-                {requested.length === 0 ? (
+                {friendRequest.length === 0 ? (
                   <Stack overflowY="scroll">
                     <Box
                       borderBottom="0.1px solid black"
@@ -193,7 +236,7 @@ export const MyFriends = () => {
                       borderBottom="0.1px solid black"
                       fontSize="25px"
                     >Friend requests</Box>
-                        {requested.map((request) => {
+                        {friendRequest.map((request) => {
                           return (
                             <Box
                               cursor="pointer"
