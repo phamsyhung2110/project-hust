@@ -127,6 +127,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       // path: "/be",
       transports: ['polling','websocket' ]});
     socket.emit("setup", user);
+    socket.emit("online", user)
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
     socket.on("stop typing", () => setIsTyping(false));
@@ -308,7 +309,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         <UpdateGroupChatModal
                             fetchMessages={fetchMessages}
                             fetchAgain={fetchAgain}
-                            setFetchAgain={setFetchAgain}
+                            setFetchA gain={setFetchAgain}
                           />
                       </Box>
                     </Box>

@@ -48,7 +48,7 @@ const Chatpage = () => {
                 bg="white"
                 left="0"
                 overflow="hidden"
-                w={{ base: "100%", md: "26%" }}
+                w={{ base: "100%", md: "20%" }}
                 h="100%"
                 marginLeft={90}
                 >
@@ -63,7 +63,7 @@ const Chatpage = () => {
                 bg="white"
                 left="0"
                 overflow="hidden"
-                w={{ base: "100%", md: "26%" }}
+                w={{ base: "100%", md: "20%" }}
                 h="100%"
                 marginLeft={90}
                 >
@@ -79,7 +79,7 @@ const Chatpage = () => {
                 bg="white"
                 left="0"
                 overflow="hidden"
-                w={{ base: "100%", md: "26%" }}
+                w={{ base: "100%", md: "20%" }}
                 h="100%"
                 marginLeft={90}
           >

@@ -70,6 +70,16 @@ io.on("connection", (socket) => {
   socket.on("setup", (userData) => {
     socket.join(userData._id);
     socket.emit("connected");
+    // socket.broadcast.emit("user online", userData._id);
+  });
+  socket.on("online", () => {
+      console.log("User Online");
+    });
+  socket.on("disconnect", () => {
+    // ... code xử lý thoát ứng dụng
+  
+    // Gửi thông báo trạng thái offline tới các máy khách khác
+    socket.broadcast.emit("user offline", userData._id);
   });
 
   socket.on("join chat", (room) => {
