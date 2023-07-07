@@ -2,9 +2,15 @@
 left to right direction
 
 actor User
+database "Database" as Database
 rectangle Chat {
     usecase "Đăng ký tài khoản" as Register
-    User --> Register: initiate
-    Register --> User: Mở giao diện đăng ký
+    usecase "Kiểm tra thông tin" as Check
+    usecase "Lưu thông tin" as Save
+    User -d- Register
+    Register --> Check
+    Check --> Database
+    Check --> Save
+    Save -l-> Database
 }
 @enduml

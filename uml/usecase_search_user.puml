@@ -1,15 +1,13 @@
 @startuml
 left to right direction
-
-actor User
-rectangle Chat {
+actor User 
+database "Database" as Database
+rectangle System {
+    usecase "Trả về kết quả" as Result
     usecase "Tìm kiếm người dùng" as Search
-    usecase "Truy xuất database" as Database
-    usecase "Hiển thị kết quả" as Display
-    User --> Search: initiate
-    Search --> Database: Nhập tên người dùng
-    Database --> Display: Truy vấn dữ liệu
-    Display --> User: Hiển thị kết quả
+    User --- Search
+    Search --> Database
+    Database -l-> Result
 }
 @enduml
 

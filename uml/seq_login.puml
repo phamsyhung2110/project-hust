@@ -2,7 +2,7 @@
 
 actor User
 participant "Hệ thống" as System
-database "Cơ sở dữ liệu" as Database
+database "Database" as Database
 
 activate User
 User -> System: Nhập thông tin đăng nhập

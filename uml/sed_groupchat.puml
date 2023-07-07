@@ -19,12 +19,12 @@ System --> User: Thông báo tạo nhóm thành công
 User -> System: Gửi tin nhắn trong nhóm
 activate User
 activate System
+System -> Database: Lưu tin nhắn vào cơ sở dữ liệu
+Database --> System: Xác nhận lưu tin nhắn thành công
 System -> SocketIO: Gửi tin nhắn đến SocketIO
 activate SocketIO
-SocketIO -> Database: Lưu tin nhắn vào cơ sở dữ liệu
 SocketIO --> Reciever: Gửi tin nhắn tới người nhận
 activate Database
-Database --> SocketIO: Xác nhận lưu tin nhắn thành công
 deactivate Database
 SocketIO --> System: Xác nhận gửi tin nhắn thành công
 deactivate SocketIO

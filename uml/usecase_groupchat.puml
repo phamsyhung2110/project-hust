@@ -14,10 +14,6 @@ rectangle "Nhóm chat" {
   User --> U2 
   User --> U3 
   User --> U4 
-  U1 ..> admin : <<include>>
-  U2 ..> admin : <<include>>
-  U3 ..> admin : <<include>>
-  U4 ..> admin : <<include>>
 }
 @enduml
 

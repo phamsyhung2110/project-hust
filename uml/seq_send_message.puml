@@ -9,9 +9,13 @@ activate User
 activate System
 User -> System: Chọn người dùng/tin nhắn nhóm
 User -> System: Nhập tin nhắn
-
+activate System
+System -> Database: Lưu tin nhắn vào Database
+activate Database
+Database --> System: Xác nhận lưu tin nhắn thành công
+deactivate Database
+System -> SocketIO: Gửi tin nhắn đến SocketIO
 activate SocketIO
-System -> SocketIO: Gửi tin nhắn sđến SocketIO
 SocketIO --> System: Xác nhận gửi tin nhắn thành công
 deactivate SocketIO
 
@@ -22,10 +26,6 @@ else Đoạn chat là tin nhắn cá nhân
     System -> System: Gửi tin nhắn tới người dùng đích
 end
 
-System -> Database: Lưu tin nhắn vào cơ sở dữ liệu
-activate Database
-Database --> System: Xác nhận lưu tin nhắn thành công
-deactivate Database
 System --> User: Hiển thị tin nhắn đã gửi
 
 @enduml

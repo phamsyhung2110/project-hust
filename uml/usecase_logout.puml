@@ -4,7 +4,7 @@ left to right direction
 actor User
 rectangle Chat {
     usecase "Đăng xuất" as Logout
-    User --> Logout: initiate
+    User --> Logout
     Logout --> User: Đăng xuất thành công
 }
 @enduml
