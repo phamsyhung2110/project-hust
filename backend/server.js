@@ -59,7 +59,7 @@ console.log(process.env.FE_URL)
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: '*',
+    origin: 'http://3.229.10.249',
     methods: ["GET", "POST"],
   },
   transports: ['polling', 'websocket'],
@@ -79,7 +79,7 @@ io.on("connection", (socket) => {
     // ... code xử lý thoát ứng dụng
   
     // Gửi thông báo trạng thái offline tới các máy khách khác
-    socket.broadcast.emit("user offline", userData._id);
+    // socket.broadcast.emit("user offline", userData._id);
   });
 
   socket.on("join chat", (room) => {
