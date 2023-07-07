@@ -22,7 +22,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
 
 // const ENDPOINT = process.env.REACT_APP_API_URL; 
-const ENDPOINT = "http://localhost:5000"
+const ENDPOINT = "http://3.229.10.249:5000"
 
 var socket, selectedChatCompare;
 

@@ -51,7 +51,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/user",
+        "http://3.229.10.249/api/user",
         {
           name,
           email,
@@ -71,7 +71,7 @@ const Signup = () => {
       // Save data at browser by localStorage
       localStorage.setItem("userInfo", JSON.stringify(data));
       setPicLoading(false);
-      history.push("/chats");
+      history.push("http://3.229.10.249/chats");
     } catch (error) {
       toast({
         title: "Error Occured!",

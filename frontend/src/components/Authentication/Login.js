@@ -40,7 +40,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "/api/user/login",
+        "http://3.229.10.249/api/user/login",
         { email, password },
         config
       );
@@ -56,7 +56,7 @@ const Login = () => {
       await localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       setTimeout(() => {
-        history.push("/chats"); //redirect to chat page
+        history.push("http://3.229.10.249/chats"); //redirect to chat page
       }, 200);
       
     } catch (error) {
