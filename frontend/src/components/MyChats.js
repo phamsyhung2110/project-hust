@@ -32,7 +32,7 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
 
-      const { data } = await axios.get("http://localhost:5000/api/chat", config);
+      const { data } = await axios.get("http://3.229.10.249:5000/api/chat", config);
       setChats(data);
     } catch (error) {
       toast({
